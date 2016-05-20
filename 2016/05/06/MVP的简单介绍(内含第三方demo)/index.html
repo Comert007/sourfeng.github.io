@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="技术," />
 
 
 
@@ -84,15 +84,28 @@
 
 
 
-<meta name="description" content="Time goes by so fast, people go in and out of your life. You must never miss the opportunity to tell these people how much they mean to you.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Sourfeng Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="MVP的简单介绍一、什么是 MVP1. MVP 的定义MVP，全称 Model-View-PresenterMVP（Model-View-Presenter，模型-视图-表示器）模式则是由IBM开发出来的一个针对C++和Java的编程模型，大概出现于2000年，是MVC模式的一个变种，主要用来隔离UI、UI逻辑和业务逻辑、数据。也就是说，MVP 是从经典的模式MVC演变而来，它们的基本思想有相通的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MVP的简单介绍(内含第三方demo)">
+<meta property="og:url" content="http://yoursite.com/2016/05/06/MVP的简单介绍(内含第三方demo)/index.html">
 <meta property="og:site_name" content="Sourfeng Blog">
-<meta property="og:description" content="Time goes by so fast, people go in and out of your life. You must never miss the opportunity to tell these people how much they mean to you.">
+<meta property="og:description" content="MVP的简单介绍一、什么是 MVP1. MVP 的定义MVP，全称 Model-View-PresenterMVP（Model-View-Presenter，模型-视图-表示器）模式则是由IBM开发出来的一个针对C++和Java的编程模型，大概出现于2000年，是MVC模式的一个变种，主要用来隔离UI、UI逻辑和业务逻辑、数据。也就是说，MVP 是从经典的模式MVC演变而来，它们的基本思想有相通的">
+<meta property="og:image" content="http://lookcode-wordpress.stor.sinaapp.com/uploads/2016/01/16.png">
+<meta property="og:image" content="http://lookcode-wordpress.stor.sinaapp.com/uploads/2016/01/22.png">
+<meta property="og:image" content="http://new.51cto.com/files/uploadimg/20090430/1559491.jpg">
+<meta property="og:image" content="http://img.blog.csdn.net/20140429154522203?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdmVjdG9yX3lp/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://rocko-blog.qiniudn.com/Android%E4%B8%AD%E7%9A%84MVP_2.png?imageView2/2/w/450/h/450/q/100">
+<meta property="og:image" content="http://kymjs.com/images/blog_image/20151029_1.png">
+<meta property="og:image" content="http://www.mobile-open.com/wp-content/uploads/2016/04/20160405194433_243.png">
+<meta property="og:image" content="https://github.com/googlesamples/android-architecture/wiki/images/tasks2.png">
+<meta property="og:image" content="http://www.lightskystreet.com/img/philm_mvp/philm_mvp_structure.png">
+<meta property="og:image" content="http://www.lightskystreet.com/img/philm_mvp/philm_mvp_uml.png">
+<meta property="og:image" content="http://www.lightskystreet.com/img/philm_mvp/mvp_method_flow.png">
+<meta property="og:updated_time" content="2016-05-20T05:42:52.805Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sourfeng Blog">
-<meta name="twitter:description" content="Time goes by so fast, people go in and out of your life. You must never miss the opportunity to tell these people how much they mean to you.">
+<meta name="twitter:title" content="MVP的简单介绍(内含第三方demo)">
+<meta name="twitter:description" content="MVP的简单介绍一、什么是 MVP1. MVP 的定义MVP，全称 Model-View-PresenterMVP（Model-View-Presenter，模型-视图-表示器）模式则是由IBM开发出来的一个针对C++和Java的编程模型，大概出现于2000年，是MVC模式的一个变种，主要用来隔离UI、UI逻辑和业务逻辑、数据。也就是说，MVP 是从经典的模式MVC演变而来，它们的基本思想有相通的">
+<meta name="twitter:image" content="http://lookcode-wordpress.stor.sinaapp.com/uploads/2016/01/16.png">
 
 
 
@@ -110,7 +123,7 @@
   };
 </script>
 
-  <title> Sourfeng Blog </title>
+  <title> MVP的简单介绍(内含第三方demo) | Sourfeng Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -131,9 +144,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -230,9 +241,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -252,227 +263,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/05/20/用github建立个人博客/" itemprop="url">
-                  用github建立个人博客
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-05-20T12:53:38+08:00" content="2016-05-20">
-              2016-05-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">in</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>纸上得来终觉浅，觉知此事要躬行</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/20/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-05-20T10:15:55+08:00" content="2016-05-20">
-              2016-05-20
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/06/MVP的简单介绍(内含第三方demo)/" itemprop="url">
-                  MVP的简单介绍(内含第三方demo)
-                </a>
+                MVP的简单介绍(内含第三方demo)
               
             
           </h1>
@@ -531,9 +322,7 @@
       
 
       
-        
-          
-            <h1 id="MVP的简单介绍"><a href="#MVP的简单介绍" class="headerlink" title="MVP的简单介绍"></a>MVP的简单介绍</h1><h2 id="一、什么是-MVP"><a href="#一、什么是-MVP" class="headerlink" title="一、什么是 MVP"></a>一、什么是 MVP</h2><h3 id="1-MVP-的定义"><a href="#1-MVP-的定义" class="headerlink" title="1. MVP 的定义"></a>1. MVP 的定义</h3><p>MVP，全称 Model-View-Presenter<br>MVP（Model-View-Presenter，模型-视图-表示器）模式则是由IBM开发出来的一个针对C++和Java的编程模型，大概出现于2000年，是MVC模式的一个变种，主要用来隔离UI、UI逻辑和业务逻辑、数据。也就是说，MVP 是从经典的模式MVC演变而来，它们的基本思想有相通的地方：Controller/Presenter负责逻辑的处理，Model提供数据，View负责显示。</p>
+        <h1 id="MVP的简单介绍"><a href="#MVP的简单介绍" class="headerlink" title="MVP的简单介绍"></a>MVP的简单介绍</h1><h2 id="一、什么是-MVP"><a href="#一、什么是-MVP" class="headerlink" title="一、什么是 MVP"></a>一、什么是 MVP</h2><h3 id="1-MVP-的定义"><a href="#1-MVP-的定义" class="headerlink" title="1. MVP 的定义"></a>1. MVP 的定义</h3><p>MVP，全称 Model-View-Presenter<br>MVP（Model-View-Presenter，模型-视图-表示器）模式则是由IBM开发出来的一个针对C++和Java的编程模型，大概出现于2000年，是MVC模式的一个变种，主要用来隔离UI、UI逻辑和业务逻辑、数据。也就是说，MVP 是从经典的模式MVC演变而来，它们的基本思想有相通的地方：Controller/Presenter负责逻辑的处理，Model提供数据，View负责显示。</p>
 <p>说明：按照View和Presenter之间的交互方式以及View本身的职责范围，Martin Folwer将MVP可分为PV（Passive View）和SoC（Supervising Controller）两种模式。</p>
 <p><strong>Passive View</strong><br>顾名思义，PV（Passive View）是一个被动的View，针对包含其中的UI元素（比如控件）的操作不是由View自身来操作，而交给Presenter来操控。</p>
 <p><strong>Supervising Controller</strong><br>在SoC（Supervising Controller）模式下，为了降低Presenter的复杂度，将诸如数据绑定和格式化这样简单的UI处理逻辑逻辑转移到View中，这些处理逻辑会体现在View实现的接口中。</p>
@@ -660,36 +449,58 @@
 <p><a href="http://blog.csdn.net/xijiaohuangcao/article/details/7925641" target="_blank" rel="external">http://blog.csdn.net/xijiaohuangcao/article/details/7925641</a></p>
 <p><a href="https://github.com/pedrovgs/EffectiveAndroidUI/" target="_blank" rel="external">https://github.com/pedrovgs/EffectiveAndroidUI/</a></p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/技术/" rel="tag">#技术</a>
+          
+        </div>
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/20/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -697,6 +508,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -716,8 +531,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -767,6 +591,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MVP的简单介绍"><span class="nav-number">1.</span> <span class="nav-text">MVP的简单介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、什么是-MVP"><span class="nav-number">1.1.</span> <span class="nav-text">一、什么是 MVP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-MVP-的定义"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. MVP 的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-为什么使用MVP"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 为什么使用MVP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-MVP的优缺点"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.MVP的优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Android-上-MVP-的几种实现"><span class="nav-number">1.1.4.</span> <span class="nav-text">4.Android 上 MVP 的几种实现</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -870,6 +705,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
