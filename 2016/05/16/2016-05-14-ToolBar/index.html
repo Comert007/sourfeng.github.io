@@ -1,0 +1,838 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="技术," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="ToolBar是android5.0推出的新的导航控件，用于取代以前的actioBar,由于其高度的可定制性、灵活性、具有Material Design风格等优点，越来越多的应用也用上了ToolBar,比如常用的知乎软件其顶部导航栏正是使用ToolBar。官方考虑到有一部分的手机版本号低于5.0，所以，ToolBar也放进了support v7包内，使得低版本的系统也能够使用ToolBar。本文将">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ToolBar简单的使用 ">
+<meta property="og:url" content="http://yoursite.com/2016/05/16/2016-05-14-ToolBar/index.html">
+<meta property="og:site_name" content="Sourfeng Blog">
+<meta property="og:description" content="ToolBar是android5.0推出的新的导航控件，用于取代以前的actioBar,由于其高度的可定制性、灵活性、具有Material Design风格等优点，越来越多的应用也用上了ToolBar,比如常用的知乎软件其顶部导航栏正是使用ToolBar。官方考虑到有一部分的手机版本号低于5.0，所以，ToolBar也放进了support v7包内，使得低版本的系统也能够使用ToolBar。本文将">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1734948-400fe8513b394718.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1734948-232e075f427b1ed5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://img.blog.csdn.net/20141122125624647">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1734948-2adaca43f1c531b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1734948-5e259fffe328a60e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1734948-7ba30760a0cc8c55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1734948-d08d2fa17f674de1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1734948-bfdac39320195e5a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2016-05-21T20:01:28.004Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ToolBar简单的使用 ">
+<meta name="twitter:description" content="ToolBar是android5.0推出的新的导航控件，用于取代以前的actioBar,由于其高度的可定制性、灵活性、具有Material Design风格等优点，越来越多的应用也用上了ToolBar,比如常用的知乎软件其顶部导航栏正是使用ToolBar。官方考虑到有一部分的手机版本号低于5.0，所以，ToolBar也放进了support v7包内，使得低版本的系统也能够使用ToolBar。本文将">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1734948-400fe8513b394718.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> ToolBar简单的使用  | Sourfeng Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sourfeng Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Sharing technology</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ToolBar简单的使用 
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-16T09:33:13+08:00" content="2016-05-16">
+              2016-05-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="ToolBar简介"><a href="#ToolBar简介" class="headerlink" title="ToolBar简介"></a>ToolBar简介</h1><p><strong>导语:</strong></p>
+<p>ToolBar是android5.0推出的新的导航控件，用于取代以前的actioBar,由于其高度的可定制性、灵活性、具有Material Design风格等优点，越来越多的应用也用上了ToolBar,比如常用的知乎软件其顶部导航栏正是使用ToolBar。官方考虑到有一部分的手机版本号低于5.0，所以，ToolBar也放进了support v7包内，使得低版本的系统也能够使用ToolBar。本文将使用support v7支持包的ToolBar来进行讲解，包括其基本用法样式定制等之时点。</p>
+<h2 id="ToolBar的基本使用"><a href="#ToolBar的基本使用" class="headerlink" title="ToolBar的基本使用"></a>ToolBar的基本使用</h2><blockquote>
+<p>引入support v7支持包</p>
+</blockquote>
+<p>在你的项目中的build.gradle内输入如下代码，即可引入支持包，该支持包内有向下兼容的ToolBar:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies&#123;</span><br><span class="line">    compile fileTree(<span class="symbol">dr:</span> <span class="string">'libs'</span> , <span class="symbol">include:</span>[<span class="string">'*.jar'</span>])</span><br><span class="line">    compile <span class="string">'com.android.support:appcompat-v7:23.1.1'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="更改主题"><a href="#更改主题" class="headerlink" title="更改主题"></a>更改主题</h2><p>为了能够正常使用ToolBar，我们需要隐藏原来的ActionBar,这个可以在主题中修改，在values/styles.xml中做出如下修改：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;style name=<span class="string">"AppTheme"</span> parent=<span class="string">"Theme.AppCompat.Light.NoActionBar"</span>&gt;&lt;<span class="regexp">/style&gt;</span></span><br></pre></td></tr></table></figure>
+<p>继承了<strong>Theme.Appcompat.Light.NoActionBar</strong>主题，这里提一下，这个Theme.Appcompat是支持包内的主题，对应着5.0版本的Theme.Material主题。然后在Manifest文件中引用这个主题。</p>
+<p>##在布局文件中创建这个控件</p>
+<blockquote>
+<p>activity_main.xml文件中，代码如下：</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"</span><br><span class="line">    android:layout_width="match_parent"</span><br><span class="line">    android:layout_height="match_parent"</span><br><span class="line">    android:orientation="vertical"&gt;</span><br><span class="line"></span><br><span class="line">    &lt;android.support.v7.widget.Toolbar</span><br><span class="line">        android:id="@+id/toolbar"</span><br><span class="line">        android:layout_width="match_parent"</span><br><span class="line">        android:background="?attr/colorPrimary"</span><br><span class="line">        android:layout_height="wrap_content"&gt;</span><br><span class="line"></span><br><span class="line">       &lt;TextView</span><br><span class="line">          android:layout_width="match_parent"</span><br><span class="line">          android:layout_height="wrap_content"</span><br><span class="line">          android:textColor="@color/color_edebeb"</span><br><span class="line">          android:text="标题"</span><br><span class="line">          android:textSize="20sp"/&gt;</span><br><span class="line">    &lt;/android.support.v7.widget.Toolbar&gt;</span><br><span class="line">&lt;/FrameLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>在上面，创建了android.support.v7.widgt.ToolBar,同时我们在内部放了一个TextView,这是与ActionBar最大的不同，因为ToolBar实际上是一个ViewGroup，支持在其内放子View。ok，我们运行程序，得到如下结果：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1734948-400fe8513b394718.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>可以看出ToolBar正常显示，当然了，这只是最简单的用法，接下来我们逐步添加内容、样式，使它看起开更加美，功能更加完善。</p>
+<h2 id="ToolBar的完善"><a href="#ToolBar的完善" class="headerlink" title="ToolBar的完善"></a>ToolBar的完善</h2><ul>
+<li><strong>首先我们考虑改变ToolBar的颜色</strong></li>
+</ul>
+<p>要想改变toolbar的颜色很简单，直接在布局文件中添加一个backgroud属性指定颜色就可以了，但是为了全局考虑，我们可以这样：在values/styles.xml文件中做出如下修改：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;resources&gt;</span><br><span class="line">    &lt;style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar"&gt;</span><br><span class="line">    &lt;!-- Customize your theme here. --&gt;</span><br><span class="line">    &lt;item name="colorPrimary"&gt;#2e8abb&lt;/item&gt; &lt;!--浅蓝色--&gt;</span><br><span class="line">    &lt;item name="colorPrimaryDark"&gt;#3A5FCD&lt;/item&gt; &lt;!--深蓝色--&gt;</span><br><span class="line">  &lt;/style&gt;</span><br><span class="line">&lt;/resources&gt;</span><br></pre></td></tr></table></figure>
+<p>然后在布局文件中，添加如下属性：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">android:</span>background=<span class="string">"?attr/colorPrimary"</span></span><br></pre></td></tr></table></figure>
+<p>这样，就能方便对每一个toolbar引用同样的颜色了，我们先看看现在的效果是怎样的：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1734948-232e075f427b1ed5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>可以看到，颜色已经改变，同时我们注意到，顶部状态栏的颜色也变成了深蓝色，这是因为添加了”colorPrimaryDark”的属性，使得顶部状态栏随之改变，利用这一特性，我们可以轻松实现“状态栏沉浸”的效果了。当然，这只适用于Android 5.0以上，如果在低版本则这个属性无效。这里再附上一张图（图片来自<a href="http://blog.csdn.net/bbld_/article/details/41439715" target="_blank" rel="external">http://blog.csdn.net/bbld_/article/details/41439715</a>）：</p>
+<p><img src="http://img.blog.csdn.net/20141122125624647" alt=""></p>
+<p>根据图中的说明，我们可以轻松地在styles.xml文件中定制我们的样式，如果想要改变toolbar的<em>title</em>、<em>subtitle</em>以及<em>menu</em>中文字的颜色，可以利用“textColorPrimary”属性等。</p>
+<ul>
+<li><strong>添加title、subtitle、logo、导航栏图标</strong></li>
+</ul>
+<p>在MainActivity文件先获取控件的实例，接着通过一系列的set方法即可设置，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> Toolbar toolbar;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">      setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">      toolbar = (Toolbar) findViewById(R.id.toolbar);</span><br><span class="line">      toolbar.setTitle(<span class="string">"Title"</span>);</span><br><span class="line">      toolbar.setSubtitle(<span class="string">"SubTitle"</span>);</span><br><span class="line">      toolbar.setLogo(R.mipmap.ic_launcher);</span><br><span class="line"></span><br><span class="line">      <span class="comment">//设置导航图标要在setSupportActionBar方法之后</span></span><br><span class="line">      setSupportActionBar(toolbar);</span><br><span class="line">      toolbar.setNavigationIcon(R.mipmap.ic_drawer_home);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1734948-2adaca43f1c531b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>如果你想修改标题和子标题的字体大小、颜色等，可以调用 <strong>setTitleTextColor</strong> 、 <strong>setTitleTextAppearance</strong> 、 <strong>setSubtitleTextColor</strong> 、 <strong>setSubtitleTextAppearance</strong> 这些API。当然，这些设置都是支持在xml布局中直接添加的，但是用的不是android:命名空间，而是自定义命名空间，如下所示：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"</span><br><span class="line">  xmlns:toolbar="http://schemas.android.com/apk/res-auto"</span><br><span class="line">  ...&gt;</span><br><span class="line">  &lt;android.support.v7.widget.Toolbar</span><br><span class="line">      ...</span><br><span class="line">      toolbar:logo="@mipmap/ic_launcher"</span><br><span class="line">      toolbar:title="Title"</span><br><span class="line">      toolbar:subtitle="Sub Title"</span><br><span class="line">      toolbar:titleTextColor="#ffffff"&gt;</span><br><span class="line">  &lt;/android.support.v7.widget.Toolbar&gt;</span><br><span class="line">&lt;/FrameLayout&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>添加菜单选项图标及点击事件</strong></li>
+</ul>
+<p>3.1 添加菜单选项图标</p>
+<p>一般导航条，在其右侧都会有菜单选项，当然ToolBar也是支持自定义菜单的，首先我们在菜单文件中，修改如下：res/menu/menu_main.xml:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;menu xmlns:android="http://schemas.android.com/apk/res/android"</span><br><span class="line">    xmlns:app="http://schemas.android.com/apk/res-auto"</span><br><span class="line">    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity"&gt;</span><br><span class="line">    &lt;item android:id="@+id/action_search"</span><br><span class="line">        android:title="Search"</span><br><span class="line">        android:icon="@mipmap/ic_search"</span><br><span class="line">        app:showAsAction="ifRoom"/&gt;</span><br><span class="line">    &lt;item android:id="@+id/action_notifications"</span><br><span class="line">        android:title="notifications"</span><br><span class="line">        android:icon="@mipmap/ic_notifications"</span><br><span class="line">        app:showAsAction="ifRoom"/&gt;</span><br><span class="line">    &lt;item android:id="@+id/action_settings"</span><br><span class="line">        android:title="@string/action_settings"</span><br><span class="line">        android:orderInCategory="100"</span><br><span class="line">        android:icon="@mipmap/ic_launcher"</span><br><span class="line">        app:showAsAction="never"/&gt;</span><br><span class="line">&lt;/menu&gt;</span><br></pre></td></tr></table></figure>
+<p>这里用了这样一个熟悉：app:showAsAction=”ifRoom”/“never”，app是自定义的命名空间，因为我们的activity继承的是AppCompatActivity，是support v7包的，并不是原生sdk内部的，因此不能使用android:showAsAction，否则会报错。然后ifRoom表示有空间则显示，never表示从不显示，而是会通过overflowwindow显示。<br>接着我们在Activity中，要重写onCreateOptionsMenu()方法，把这个菜单加载进去：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Overridepublic</span> <span class="function"><span class="keyword">boolean</span> <span class="title">onCreateOptionsMenu</span><span class="params">(Menu menu)</span> </span>&#123; </span><br><span class="line">       getMenuInflater().inflate(R.menu.menu_main, menu);   </span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.2 添加点击事件</p>
+<p>菜单有了，我们要为菜单添加点击事件，这样菜单才会有实际用途,添加点击事件也很方便，可以这样操作：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置导航图标、添加菜单点击事件要在setSupportActionBar方法之后</span></span><br><span class="line">      setSupportActionBar(toolbar);</span><br><span class="line">      toolbar.setNavigationIcon(R.mipmap.ic_drawer_home);</span><br><span class="line"></span><br><span class="line">      toolbar.setOnMenuItemClickListener(<span class="keyword">new</span> Toolbar.OnMenuItemClickListener() &#123;</span><br><span class="line">          <span class="meta">@Override</span></span><br><span class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onMenuItemClick</span><span class="params">(MenuItem item)</span> </span>&#123;</span><br><span class="line">              <span class="keyword">switch</span> (item.getItemId()) &#123;</span><br><span class="line">                  <span class="keyword">case</span> R.id.action_search:</span><br><span class="line">                      Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"Search !"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">                      <span class="keyword">break</span>;</span><br><span class="line">                  <span class="keyword">case</span> R.id.action_notifications:</span><br><span class="line">                      Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"Notificationa !"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">                      <span class="keyword">break</span>;</span><br><span class="line">                  <span class="keyword">case</span> R.id.action_settings:</span><br><span class="line">                      Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"Settings !"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">                      <span class="keyword">break</span>;</span><br><span class="line">              &#125;</span><br><span class="line">              <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;);</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1734948-5e259fffe328a60e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>可以看到，菜单选项图标正常显示，以及点击事件都正常触发，但是还有一点瑕疵的地方，那就是右上角的三个圆点，是黑色的，与图标格格不入，有没有什么办法改变它呢？答案是有的，可以通过添加样式改变，如下所示：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  &lt;resources&gt;</span><br><span class="line">    &lt;style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar"&gt;</span><br><span class="line">        ...</span><br><span class="line">        &lt;item name="android:textColorSecondary"&gt;#ffffff&lt;/item&gt;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/resources&gt;</span><br></pre></td></tr></table></figure>
+<p>“android:textColorSecondary”属性对应的就是右上角三个圆点的颜色了。改变之后将会变成你要的颜色。</p>
+<p>3.3 其他样式修改</p>
+<p><em>修改Toolbar popup menu样式</em></p>
+<p>我们先点击右上角的三个点，会弹出一个popup menu，如下所示：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1734948-7ba30760a0cc8c55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>可以看到右上角的popup menu是白底黑字，那么有没有什么办法改变它的背景颜色，使菜单显示为黑底白字呢呢？答案是有的，我们可以这样设置：<br>首先在styles.xml文件中，新建一个主题：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  &lt;!-- toolbar弹出菜单样式 --&gt;</span><br><span class="line">&lt;style name="ToolbarPopupTheme" parent="@style/ThemeOverlay.AppCompat.Dark"&gt;   </span><br><span class="line">     &lt;item name="android:colorBackground"&gt;#000000&lt;/item&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>可以看到这个主题的parent是直接继承自ThemeOverlay.AppCompat.Dark，是支持包的一个主题，并且我们在内部声明了“android:colorBackground”这个属性，我们只要更改这个属性就能变更菜单的背景颜色了。接下来我们在布局文件中引入这个主题，这也很简单，为toolbar添加额外的属性如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">toolbar:popupTheme=<span class="string">"@style/ToolbarPopupTheme"</span></span><br></pre></td></tr></table></figure>
+<p>这样，改几行代码即可修改popup menu的背景颜色了，如下面所示：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1734948-d08d2fa17f674de1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><strong>修改Toolbar popup menu 弹出位置</strong></p>
+<p>我们可以看到，popup menu的位置是过于偏上的，我们还可以修改它的位置，使它处于Toolbar之下，这样看起来可能更美观：<br>修改styles.xml文件如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">style name="ToolbarPopupTheme" parent="@style/ThemeOverlay.AppCompat.Dark"&gt;    </span><br><span class="line">    &lt;item name="android:colorBackground"&gt;#000000&lt;/item&gt;    </span><br><span class="line">    &lt;item name="actionOverflowMenuStyle"&gt;@style/OverflowMenuStyle&lt;/item&gt; &lt;!--新增一个item，用于控制menu--&gt;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;style name="OverflowMenuStyle" parent="Widget.AppCompat.Light.PopupMenu.Overflow"&gt;   </span><br><span class="line">     &lt;item name="overlapAnchor"&gt;false&lt;/item&gt;  &lt;!--把该属性改为false即可使menu位置位于toolbar之下--&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>效果如下图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1734948-bfdac39320195e5a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>那么到目前为止，对于toolbar的相关使用意见讲述完毕，可以看出toolbar的灵活性很高，能自定义很多样式，我们平常开发也会遇到各种不同的样式，因此toolbar用于取代actionbar是非常合适的。以后如果还有遇到别的样式，我也会分享出来，谢谢。</p>
+<blockquote>
+<p>参考文档：<br><a href="http://www.aichengxu.com/view/2559126" target="_blank" rel="external">Toolbar-5.0新特性</a><br><a href="http://blog.csdn.net/bbld_/article/details/41439715" target="_blank" rel="external">Android Material Design之Toolbar与Palette实践</a><br><a href="http://www.jianshu.com/p/79604c3ddcae" target="_blank" rel="external">Android开发：最详细的 Toolbar 开发实践总结</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/技术/" rel="tag">#技术</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/14/2016-05-14-github/" rel="next" title="github关联远程仓库 ">
+                <i class="fa fa-chevron-left"></i> github关联远程仓库 
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/18/2016-05-16-git/" rel="prev" title="用Git Command 秀操作啦 ">
+                用Git Command 秀操作啦  <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="sourfeng" />
+          <p class="site-author-name" itemprop="name">sourfeng</p>
+          <p class="site-description motion-element" itemprop="description">Time goes by so fast, people go in and out of your life. You must never miss the opportunity to tell these people how much they mean to you.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ToolBar简介"><span class="nav-number">1.</span> <span class="nav-text">ToolBar简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ToolBar的基本使用"><span class="nav-number">1.1.</span> <span class="nav-text">ToolBar的基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更改主题"><span class="nav-number">1.2.</span> <span class="nav-text">更改主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ToolBar的完善"><span class="nav-number">1.3.</span> <span class="nav-text">ToolBar的完善</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sourfeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>
