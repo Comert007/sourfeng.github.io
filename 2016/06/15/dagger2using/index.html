@@ -84,15 +84,19 @@
 
 
 
-<meta name="description" content="Time goes by so fast, people go in and out of your life. You must never miss the opportunity to tell these people how much they mean to you.">
-<meta property="og:type" content="website">
+<meta name="description" content="Dagger 用法通过建立一个coffee maker,我们将展示依赖注入和Dagger。通过一个完整的代码例子，你能编译和运行，也可以来看Dagger’s coffee example（https://github.com/square/dagger/tree/master/examples/simple/src/main/java/coffee）。
+声明依赖Dagger的构建取决于应用类的实例">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Sourfeng Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/06/15/dagger2using/index.html">
 <meta property="og:site_name" content="Sourfeng Blog">
-<meta property="og:description" content="Time goes by so fast, people go in and out of your life. You must never miss the opportunity to tell these people how much they mean to you.">
+<meta property="og:description" content="Dagger 用法通过建立一个coffee maker,我们将展示依赖注入和Dagger。通过一个完整的代码例子，你能编译和运行，也可以来看Dagger’s coffee example（https://github.com/square/dagger/tree/master/examples/simple/src/main/java/coffee）。
+声明依赖Dagger的构建取决于应用类的实例">
+<meta property="og:updated_time" content="2016-06-15T02:31:06.257Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sourfeng Blog">
-<meta name="twitter:description" content="Time goes by so fast, people go in and out of your life. You must never miss the opportunity to tell these people how much they mean to you.">
+<meta name="twitter:description" content="Dagger 用法通过建立一个coffee maker,我们将展示依赖注入和Dagger。通过一个完整的代码例子，你能编译和运行，也可以来看Dagger’s coffee example（https://github.com/square/dagger/tree/master/examples/simple/src/main/java/coffee）。
+声明依赖Dagger的构建取决于应用类的实例">
 
 
 
@@ -110,7 +114,7 @@
   };
 </script>
 
-  <title> Sourfeng Blog </title>
+  <title>  | Sourfeng Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -131,9 +135,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -253,9 +255,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -276,9 +278,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/06/15/dagger2using/" itemprop="url">
-                  未命名
-                </a>
               
             
           </h1>
@@ -318,9 +317,7 @@
       
 
       
-        
-          
-            <p>Dagger 用法<br>通过建立一个coffee maker,我们将展示依赖注入和Dagger。通过一个完整的代码例子，你能编译和<br>运行，也可以来看Dagger’s coffee example（<a href="https://github.com/square/dagger/tree/master" target="_blank" rel="external">https://github.com/square/dagger/tree/master</a><br>/examples/simple/src/main/java/coffee）。</p>
+        <p>Dagger 用法<br>通过建立一个coffee maker,我们将展示依赖注入和Dagger。通过一个完整的代码例子，你能编译和<br>运行，也可以来看Dagger’s coffee example（<a href="https://github.com/square/dagger/tree/master" target="_blank" rel="external">https://github.com/square/dagger/tree/master</a><br>/examples/simple/src/main/java/coffee）。</p>
 <h2 id="声明依赖"><a href="#声明依赖" class="headerlink" title="声明依赖"></a>声明依赖</h2><p>Dagger的构建取决于应用类的实例并且满足类的依赖。它使用javax.inject.Inject注入注解去标<br>识那些需要的构造方法和字段。</p>
 <p>使用 @Inject 去注入注解 Dagger创建一个类实例的构造方法。当一个新的类实例<br>被注解，Dagger将获得这个必要的参数值和包括这个构造方法。</p>
 <pre><code>class Thermosiphon implements Pump {
@@ -509,16 +506,19 @@ class DripCoffeeModule {
   &lt;/dependency&gt;
 &lt;/dependencies&gt;
 </code></pre>
-          
+      
+    </div>
+
+    <div>
+      
         
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
@@ -526,575 +526,32 @@ class DripCoffeeModule {
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/05/22/2016-Googel-I-O-—人工智能、VR、智能家居、可穿戴型都拿下/" rel="next" title="2016 Googel I/O —人工智能、VR、智能家居、可穿戴型都拿下 ">
+                <i class="fa fa-chevron-left"></i> 2016 Googel I/O —人工智能、VR、智能家居、可穿戴型都拿下 
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/05/22/2016-Googel-I-O-—人工智能、VR、智能家居、可穿戴型都拿下/" itemprop="url">
-                  2016 Googel I/O —人工智能、VR、智能家居、可穿戴型都拿下 
-                </a>
-              
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-22T00:33:13+08:00" content="2016-05-22">
-              2016-05-22
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          Google I/O大会在全球开发者、谷歌粉丝、安卓厂商和竞争对手的翘首以盼中开幕了。
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/22/2016-Googel-I-O-—人工智能、VR、智能家居、可穿戴型都拿下/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/18/2016-05-16-git/" itemprop="url">
-                  用Git Command 秀操作啦 
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-18T09:33:13+08:00" content="2016-05-18">
-              2016-05-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/小提示/" itemprop="url" rel="index">
-                    <span itemprop="name">小提示</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          git command 的基本使用，能够对git有个简单的认识
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/18/2016-05-16-git/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/16/2016-05-14-ToolBar/" itemprop="url">
-                  ToolBar简单的使用 
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-16T09:33:13+08:00" content="2016-05-16">
-              2016-05-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          ToolBar是android5.0推出的新的导航控件，用于取代以前的actioBar,由于其高度的可定制性、灵活性、具有Material Design风格等优点，越来越多的应用也用上了ToolBar,比如常用的知乎软件其顶部导航栏正是使用ToolBar。官方考虑到有一部分的手机版本号低于5.0，所以，ToolBar也放进了support v7包内，使得低版本的系统也能够使用ToolBar。本文将使用support v7支持包的ToolBar来进行讲解，包括其基本用法样式定制等之时点。
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/16/2016-05-14-ToolBar/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/14/2016-05-14-github/" itemprop="url">
-                  github关联远程仓库 
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-14T09:33:13+08:00" content="2016-05-14">
-              2016-05-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/小提示/" itemprop="url" rel="index">
-                    <span itemprop="name">小提示</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          使用个git command 关联远程仓库
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/14/2016-05-14-github/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/06/MVP的简单介绍(内含第三方demo)/" itemprop="url">
-                  MVP的简单介绍(内含第三方demo)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-06T15:36:13+08:00" content="2016-05-06">
-              2016-05-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          MVP模式为现在越来越多开发者所喜欢，究其原因，在测试，和后期开发中都给了我们很大的方便。很多的大神都在研究MVP，Google官方也给出了许多的例子。
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/06/MVP的简单介绍(内含第三方demo)/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -1102,6 +559,10 @@ class DripCoffeeModule {
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -1121,8 +582,17 @@ class DripCoffeeModule {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.jpg"
@@ -1172,6 +642,17 @@ class DripCoffeeModule {
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#声明依赖"><span class="nav-number">1.</span> <span class="nav-text">声明依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#满足依赖关系"><span class="nav-number">2.</span> <span class="nav-text">满足依赖关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建图表"><span class="nav-number">3.</span> <span class="nav-text">构建图表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绑定图表"><span class="nav-number">4.</span> <span class="nav-text">绑定图表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例对象和作用域绑定"><span class="nav-number">5.</span> <span class="nav-text">单例对象和作用域绑定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可重用的范围"><span class="nav-number">6.</span> <span class="nav-text">可重用的范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#provider-注入"><span class="nav-number">7.</span> <span class="nav-text">provider 注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Qualifiers-限定符"><span class="nav-number">8.</span> <span class="nav-text">Qualifiers(限定符)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译时生效"><span class="nav-number">9.</span> <span class="nav-text">编译时生效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译时代码生成"><span class="nav-number">10.</span> <span class="nav-text">编译时代码生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用dagger"><span class="nav-number">11.</span> <span class="nav-text">使用dagger</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -1275,6 +756,10 @@ class DripCoffeeModule {
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
