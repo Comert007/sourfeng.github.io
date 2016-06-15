@@ -276,8 +276,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/06/15/dagger2using/" itemprop="url">
-                  未命名
+                <a class="post-title-link" href="/2016/05/22/dagger2using/" itemprop="url">
+                  让人激动的Dagger2---官方文档翻译 
                 </a>
               
             
@@ -290,11 +290,30 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-15T10:37:50+08:00" content="2016-06-15">
-              2016-06-15
+            <time itemprop="dateCreated" datetime="2016-05-22T00:33:13+08:00" content="2016-05-22">
+              2016-05-22
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -319,197 +338,12 @@
 
       
         
-          
-            <p>Dagger 用法<br>通过建立一个coffee maker,我们将展示依赖注入和Dagger。通过一个完整的代码例子，你能编译和<br>运行，也可以来看Dagger’s coffee example（<a href="https://github.com/square/dagger/tree/master" target="_blank" rel="external">https://github.com/square/dagger/tree/master</a><br>/examples/simple/src/main/java/coffee）。</p>
-<h2 id="声明依赖"><a href="#声明依赖" class="headerlink" title="声明依赖"></a>声明依赖</h2><p>Dagger的构建取决于应用类的实例并且满足类的依赖。它使用javax.inject.Inject注入注解去标<br>识那些需要的构造方法和字段。</p>
-<p>使用 @Inject 去注入注解 Dagger创建一个类实例的构造方法。当一个新的类实例<br>被注解，Dagger将获得这个必要的参数值和包括这个构造方法。</p>
-<pre><code>class Thermosiphon implements Pump {
-  private final Heater heater;
-
-  @Inject
-  Thermosiphon(Heater heater) {
-    this.heater = heater;
-  }
-
-  ...
-}
-</code></pre><p>Dagger 可以直接注入字段。在这个例子中包含了一个Heater的实例即是 heater字段 和包含了一个<br>Pump 实例 即是pump字段</p>
-<pre><code>class CoffeeMaker {
-  @Inject Heater heater;
-  @Inject Pump pump;
-
-  ...
-}
-</code></pre><p>如果你的类有@Inject 注释关键字，但是没有@Inject注释构造方法，那么Dagger将自动<br>对构造方法注入这些关键字而不会创建新的实例。增加一个没有参数的构造方法，并且用<br>@Inject注解，那也就意味着Dagger能创建实例。<br>虽然构造方法或关键字注入是优先选择的，但是Dagger也支持方法注解。<br>如果类缺少@Inject 注释，那么就不能够被Dagger 构建。</p>
-<h2 id="满足依赖关系"><a href="#满足依赖关系" class="headerlink" title="满足依赖关系"></a>满足依赖关系</h2><p>一般来说，如同上面描述的需要类型一样，Dagger满足每一种依赖关系，当你需要一个<br>CoffeeMaker，通过回调 new CoffeeMaker()它将包含一个注释，并且设置它自己的注解关键字。<br>但是@Inject也有不起作用的地方<br>    1.接口不能被构建<br>    2.第三方不能被注释<br>    3.配置类型的对象一定不能被使用的。<br>因为在处理这些案例的时候@Inject是不足的和不够灵便的，但是可以使用@Provides注释方法<br>去满足一种依赖。用这个类的返回类型规定去满足这个依赖。</p>
-<p>例如，当某个地方需要的时候，这个provideHeader()就将会被调用。</p>
-<pre><code>@Provides static Heater provideHeater() {
-  return new ElectricHeater();
-}
-</code></pre><p>由于@Provide 方法，依赖自身将是可能的。无论什么时候需要一个Pump,这个就将返回一个<br>Thermosition 。</p>
-<pre><code>@Provides static Pump providePump(Thermosiphon pump) {
-  return pump;
-}
-</code></pre><p>所有的@Provide方法都必须归属于一个module。仅仅类有一个@Module注释</p>
-<pre><code>@Module
-class DripCoffeeModule {
-  @Provides static Heater provideHeater() {
-    return new ElectricHeater();
-  }
-
-  @Provides static Pump providePump(Thermosiphon pump) {
-    return pump;
-  }
-}
-</code></pre><p>通过协定，@Provide方法用一个provide前缀的方式命名，并且module类用一个有Module后缀<br>的方式命名。</p>
-<h2 id="构建图表"><a href="#构建图表" class="headerlink" title="构建图表"></a>构建图表</h2><p>这个@Inject 和 @Provide注释类形成了一个对象图表，对他们的依赖进行了链接。通过一组已经<br>定义好的根能够调用一个应用的main方法和一个android应用存取代码。在dagger2 中那个集合被<br>一个没有参数和返回值类型要求的接口定义。通过应用一个@Component 注释这样一个接口，并且<br>通过module类型去配置modules参数，那么Dagger2 将生成一个完整的关系实现。</p>
-<pre><code>@Component(modules = DripCoffeeModule.class)
-interface CoffeeShop {
-  CoffeeMaker maker();
-}
-</code></pre><p>这个实现工具用相同的Dagger前缀作为这个接口的名字。这个实现工具包含一个通过调用builder()<br>方式得到的实例，和使用这个builder返回去设置依赖并且build()一个新的实例。</p>
-<pre><code>CoffeeShop coffeeShop = DaggerCoffeeShop.builder()
-    .dripCoffeeModule(new DripCoffeeModule())
-    .build();
-</code></pre><p>Note: 如果你的@Component不是一个最高阶层的类型，那么这个生成的component的名字以下划线的方式<br>将包含他自己的全部类型名。例如下面的代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Bar</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Component</span></span><br><span class="line">    <span class="class"><span class="keyword">interface</span> <span class="title">BazComponent</span> </span>&#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>将生成一个以DaggerFoo_Bar_BazComponent命名的component</p>
-<p>任何一个module都带有一个默认的构造方法，但是当使用builder的时候，这个构造方法是被忽略。<br>当module没有设置builder的时候，module能够自动构建一个实例。并且对于任何一个@Provides<br>注释的所有方法是static的module来说，这个实现工具不再需要一个实例。如果没有使用创建一个依赖实例，<br>所有依赖能够被构建，那么这个生成的实现工具将也有一个create()方法，这个方法能够被用于得到一个<br>实例，所以没有必要去处理这个builder。</p>
-<pre><code>CoffeeShop coffeeShop = DaggerCoffeeShop.create();
-</code></pre><p>那么现在，我们的CoffeeApp能够简单的使用这个CoffeeShop的Dagger生成实现工具去得到一个完整<br>injected 的CoffeeMaker;</p>
-<pre><code>public class CoffeeApp {
-  public static void main(String[] args) {
-    CoffeeShop coffeeShop = DaggerCoffeeShop.create();
-    coffeeShop.maker().brew();
-  }
-}
-</code></pre><p>既然这个图表被构建，并且所有的关键点都被注入注释，我们运行coffee maker app。激动人心的时刻：</p>
-<pre><code>$ java -cp ... coffee.CoffeeApp
-~ ~ ~ heating ~ ~ ~
-=&gt; =&gt; pumping =&gt; =&gt;
- [_]P coffee! [_]P
-</code></pre><h2 id="绑定图表"><a href="#绑定图表" class="headerlink" title="绑定图表"></a>绑定图表</h2><p>如上使用一些更加典型的绑定去演示如何构建一个component，但是这儿有大量的原理，这样有助于去<br>绑定图表。下面是大量的依赖并且能够被用于生产一个较好形式的component。</p>
-<ol>
-<li><p>这些表明包含在@Module里面的@Provides方法通过@Component.modules被直接引用,或者通过@Module.includes<br>被用来过度.</p>
-</li>
-<li><p>任何一个带有@Inject的构造方法，不论是否使用@Scope注释，这个构造方法将匹配一个component的Scope;</p>
-</li>
-<li><p>component提供component依赖方法</p>
-</li>
-<li><p>可以component自身</p>
-</li>
-<li><p>没有限定builders，因为每一个都包含subComponent。</p>
-</li>
-<li><p>Provider 或者 lazy wrappers 适用于任何上面的绑定</p>
-</li>
-<li><p>一个Layer由任何上述绑定组成，一个Provider由一个lazy组成。(e.g., Provider<lazy<coffeemaker>&gt;)</lazy<coffeemaker></p>
-</li>
-<li><p>一个成员注入器适用于任何类型</p>
-</li>
-</ol>
-<h2 id="单例对象和作用域绑定"><a href="#单例对象和作用域绑定" class="headerlink" title="单例对象和作用域绑定"></a>单例对象和作用域绑定</h2><p>用@Singleton注释一个@Provide方法或者一个可注入的类。这个图表将使用一个独立实例值用于它的所有clients。</p>
-<pre><code>@Provides @Singleton static Heater provideHeater() {
-  return new ElectricHeater();
-}
-</code></pre><p>这个@Singleton注释一个可注入的类也能作为一个文档用来服务。这个用来提醒潜在的维护人员，那个类能够被多<br>重线程分享。</p>
-<pre><code>@Singleton
-class CoffeeMaker {
-  ...
-}
-</code></pre><p>在图表中，由于Dagger2 用component生成的实例工具关联scope的实例，所以这些component需要去声明它代表<br>哪个scope。例如，在相同的component中有一个@Singleton绑定和一个@RequestScoped绑定，这样是说不通的，因为<br>在相同的component中这些Scope有不同的生命周期，因此其所对应的component应该也具有不同的生命周期。这就<br>表明component与给定的scope相关联，仅仅能应用这一个scope注释component接口。</p>
-<pre><code>@Component(modules = DripCoffeeModule.class)
-@Singleton
-interface CoffeeShop {
-  CoffeeMaker maker();
-}
-</code></pre><p>Component有多个scope注释被应用，这表明他们是同一个scope的别名，所以以至于component能够包含它定义的任何scoped绑定。</p>
-<h2 id="可重用的范围"><a href="#可重用的范围" class="headerlink" title="可重用的范围"></a>可重用的范围</h2><p>有时你即想限制一个@Inject注释的构造类被实例化的次数，或者一个@Provides方法被调用的次数，但是你又可以不需要去保证，在任何特定<br>的component或者subcomponent生命周期期间相同的实例被使用。这个是非常有用的，例如android的环境中，这种配置是十分重要的。</p>
-<p>对于这些绑定，你能够应用@Reusable Scope,@Reusable-scoped不像其他的绑定，他是不用关联任何一个独立的component；相反，<br>每一个使用了这个绑定的component将存储返回对象或者实例化对象。</p>
-<p>这样就意味着你在一个component中配置了一个使用@Reusable绑定的module，但是只有一个subcomponent真正的使用了这个绑定，然后，<br>只有这个subcomponent将能够缓存这个绑定的对象。如果没有同一个父类的两个subcomponent使用这个绑定，那么他们都可以缓存自己的<br>对象，如果一个component的父类已经缓存了这个对象，那么这个subcomponent将不再缓存。</p>
-<p>这儿没有保证component仅仅调用这个绑定一次，所以应用@Reusable 去绑定返回不定的对象或者指向相同的实例的对象集是十分危险的。<br>只有为了一个固定的对象使用@Resuable才是安全的。</p>
-<pre><code>@Reusable // It doesn&apos;t matter how many scoopers we use, but don&apos;t waste them.
-class CoffeeScooper {
-  @Inject CoffeeScooper() {}
-}
-
-@Module
-class CashRegisterModule {
-  @Provides
-  @Reusable // DON&apos;T DO THIS! You do care which register you put your cash in.
-            // Use a specific scope instead.
-  static CashRegister badIdeaCashRegister() {
-    return new CashRegister();
-  }
-}
-
-
-@Reusable // DON&apos;T DO THIS! You really do want a new filter each time, so this
-          // should be unscoped.
-class CoffeeFilter {
-  @Inject CoffeeFilter() {}
-}
-</code></pre><h2 id="provider-注入"><a href="#provider-注入" class="headerlink" title="provider 注入"></a>provider 注入</h2><p>有时你需要去返回多重的实例代替仅仅注入single 值。你可以有几个选择选项（Factories，Builders 等），一个是注入Provider<t><br>代替 T 。 一个Provider<t> 因为 T 每次调用这个绑定逻辑，get() 是会被调用的。如果那个绑定逻辑是一个@Inject 构造方法，那么<br>一个新的实例将会被创建，但是一个@Provides 方法没有这样的保证。</t></t></p>
-<pre><code>class BigCoffeeMaker {
-  @Inject Provider&lt;Filter&gt; filterProvider;
-
-  public void brew(int numberOfPots) {
-  ...
-    for (int p = 0; p &lt; numberOfPots; p++) {
-      maker.addFilter(filterProvider.get()); //new filter every time.
-      maker.addCoffee(...);
-      maker.percolate();
-      ...
-    }
-  }
-}
-</code></pre><p>Note: 注入 Provider<t>有可能造成混乱代码，并且可能在你的graph中被设计成错误的scope或者错误的构造对象。<br>你可能经常想使用一个factory 或者一个 Lazy<t> 或者重组 这个生命周期 ，并且使你代码的结构体可能仅仅注入 一个 T.<br>然而，注入Provider<t> 仅仅在某些情况下才起作用。</t></t></t></p>
-<h2 id="Qualifiers-限定符"><a href="#Qualifiers-限定符" class="headerlink" title="Qualifiers(限定符)"></a>Qualifiers(限定符)</h2><p>有时这个单独的类型是不足以去鉴别一个依赖的。例如，一个复杂的coffee maker app 想分别热水和加热暖板。</p>
-<p>在这个案例中，我们增加一个qualifier(限定符)注释。这是一个自身具有@Qualifier注释的注解。这儿是一个用@Name声明的qualifier，<br>一个qualifier注释包含在 javax.inject:</p>
-<pre><code>@Qualifier
-@Documented
-@Retention(RUNTIME)
-public @interface Named {
-  String value() default &quot;&quot;;
-}
-</code></pre><p>你能创建你自己的qulifiers注释，或者就使用@Named。通过注释关键字或者有意义的参数就可以使用qualifiers。这个自定义的类型和<br>qualifiers注释同时使用，就能鉴别不同的依赖关系。</p>
-<pre><code>class ExpensiveCoffeeMaker {
-  @Inject @Named(&quot;water&quot;) Heater waterHeater;
-  @Inject @Named(&quot;hot plate&quot;) Heater hotPlateHeater;
-  ...
-}
-</code></pre><p>通过注释与提供qualifiers相一致的@Provides方法</p>
-<p>@Provides @Named(“hot plate”) static Heater provideHotPlateHeater() {<br>  return new ElectricHeater(70);<br>}</p>
-<p>@Provides @Named(“water”) static Heater provideWaterHeater() {<br>  return new ElectricHeater(93);<br>}</p>
-<p>这种依赖关系不能有多重的qualifier注释。</p>
-<h2 id="编译时生效"><a href="#编译时生效" class="headerlink" title="编译时生效"></a>编译时生效</h2><p>Dagger 注释处理是十分精确的，如果任何一个绑定是无效的或者不完整的，那么就有可能造成编译时错误。例如，下面这个module只是配置在了<br>一个component上而没有绑定Executor</p>
-<pre><code>@Module
-class DripCoffeeModule {
-  @Provides static Heater provideHeater(Executor executor) {
-    return new CpuHeater(executor);
-  }
-}
-</code></pre><p>当编译的时候，javac 是拒绝这个遗漏绑定</p>
-<pre><code>[ERROR] COMPILATION ERROR :
-[ERROR] error: java.util.concurrent.Executor cannot be provided without an @Provides-annotated method.
-</code></pre><p>要解决这个问题，就是在这个component中，通过增加一个Executor的@Provides注释方法到某一个modules，当@Inject，@Module和<br>@Provides都分别生效的时候，所有绑定关系都建立在@Component上。Dagger 1 是直接依赖在@Module上生效的（这就有可能或者没可能<br>反应出运行时的状态），但是Dagger 2 是省略了这种生效形式（以及在@Module上随之而来的参数配置）。</p>
-<h2 id="编译时代码生成"><a href="#编译时代码生成" class="headerlink" title="编译时代码生成"></a>编译时代码生成</h2><p>Dagger的注释处理器也有可能生成资源文件，用一些像CoffeeMaker_Factory.java 或者 CoffeeMaker_MembersInjector.java.来命名的。<br>这些文件是Dagger生成实现的详情。尽管当单步调试时，通过一个注解就可以很便利的实现，但是你还是不应该这样直接使用。这个生成的<br>类型文件应该在你的代码中指向这个用Dagger重定向的component。</p>
-<h2 id="使用dagger"><a href="#使用dagger" class="headerlink" title="使用dagger"></a>使用dagger</h2><p>在应用运行时，需要包括一个  dagger-2.2.jar，为了使你的代码更加快速生成，那么在你的build编译时还将包含一个dagger-compiler-2.2.jar</p>
-<p>在一个maven项目中，将包括在运行时依赖部分的一个pom.xml和dagger-compiler 作为编辑插件依赖。</p>
-<pre><code>&lt;dependencies&gt;
-  &lt;dependency&gt;
-    &lt;groupId&gt;com.google.dagger&lt;/groupId&gt;
-    &lt;artifactId&gt;dagger&lt;/artifactId&gt;
-    &lt;version&gt;2.2&lt;/version&gt;
-  &lt;/dependency&gt;
-  &lt;dependency&gt;
-    &lt;groupId&gt;com.google.dagger&lt;/groupId&gt;
-    &lt;artifactId&gt;dagger-compiler&lt;/artifactId&gt;
-    &lt;version&gt;2.2&lt;/version&gt;
-    &lt;optional&gt;true&lt;/optional&gt;
-  &lt;/dependency&gt;
-&lt;/dependencies&gt;
-</code></pre>
-          
+          如果现在还不知道Dagger 你就out了
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/05/22/dagger2using/">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1141,7 +975,7 @@ class DripCoffeeModule {
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>

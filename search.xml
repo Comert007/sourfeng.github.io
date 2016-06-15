@@ -4,8 +4,8 @@
   
     
     <entry>
-      <title></title>
-      <url>http://yoursite.com/2016/06/15/dagger2using/</url>
+      <title><![CDATA[让人激动的Dagger2---官方文档翻译 ]]></title>
+      <url>http://yoursite.com/2016/05/22/dagger2using/</url>
       <content type="html"><![CDATA[<p>Dagger 用法<br>通过建立一个coffee maker,我们将展示依赖注入和Dagger。通过一个完整的代码例子，你能编译和<br>运行，也可以来看Dagger’s coffee example（<a href="https://github.com/square/dagger/tree/master" target="_blank" rel="external">https://github.com/square/dagger/tree/master</a><br>/examples/simple/src/main/java/coffee）。</p>
 <h2 id="声明依赖"><a href="#声明依赖" class="headerlink" title="声明依赖"></a>声明依赖</h2><p>Dagger的构建取决于应用类的实例并且满足类的依赖。它使用javax.inject.Inject注入注解去标<br>识那些需要的构造方法和字段。</p>
 <p>使用 @Inject 去注入注解 Dagger创建一个类实例的构造方法。当一个新的类实例<br>被注解，Dagger将获得这个必要的参数值和包括这个构造方法。</p>
