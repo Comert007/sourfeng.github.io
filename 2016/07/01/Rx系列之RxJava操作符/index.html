@@ -84,15 +84,34 @@
 
 
 
-<meta name="description" content="Time goes by so fast, people go in and out of your life. You must never miss the opportunity to tell these people how much they mean to you.">
-<meta property="og:type" content="website">
+<meta name="description" content="Rx系列之RxJava操作符在前面一章节中，讲解了Rxjava的基本的组成，他们之间的关系，这一章，主要让大家了解一下在RxJava中的操作符。但是在这之前，我们还得先了解一下 Scheduler(调度器) 
+Scheduler(调度器)在上一章节，我们讲到了，Rxjava的就是异步。那么如何让他进行异步呢？这就要用到我们的调度器了。先看看RxJava中调度器支持哪几种调度：
+
+
+
+调度器类型
+效">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Sourfeng Blog">
-<meta property="og:url" content="http://yoursite.com/tags/小知识/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/07/01/Rx系列之RxJava操作符/index.html">
 <meta property="og:site_name" content="Sourfeng Blog">
-<meta property="og:description" content="Time goes by so fast, people go in and out of your life. You must never miss the opportunity to tell these people how much they mean to you.">
+<meta property="og:description" content="Rx系列之RxJava操作符在前面一章节中，讲解了Rxjava的基本的组成，他们之间的关系，这一章，主要让大家了解一下在RxJava中的操作符。但是在这之前，我们还得先了解一下 Scheduler(调度器) 
+Scheduler(调度器)在上一章节，我们讲到了，Rxjava的就是异步。那么如何让他进行异步呢？这就要用到我们的调度器了。先看看RxJava中调度器支持哪几种调度：
+
+
+
+调度器类型
+效">
+<meta property="og:updated_time" content="2016-07-01T06:39:31.116Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sourfeng Blog">
-<meta name="twitter:description" content="Time goes by so fast, people go in and out of your life. You must never miss the opportunity to tell these people how much they mean to you.">
+<meta name="twitter:description" content="Rx系列之RxJava操作符在前面一章节中，讲解了Rxjava的基本的组成，他们之间的关系，这一章，主要让大家了解一下在RxJava中的操作符。但是在这之前，我们还得先了解一下 Scheduler(调度器) 
+Scheduler(调度器)在上一章节，我们讲到了，Rxjava的就是异步。那么如何让他进行异步呢？这就要用到我们的调度器了。先看看RxJava中调度器支持哪几种调度：
+
+
+
+调度器类型
+效">
 
 
 
@@ -110,7 +129,7 @@
   };
 </script>
 
-  <title> 标签: 小知识 | Sourfeng Blog </title>
+  <title>  | Sourfeng Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -131,7 +150,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -252,74 +271,153 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        小知识
-        <small>标签</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/05/18/2016-05-16-git/" itemprop="url">
-              
-                <span itemprop="name">用Git Command 秀操作啦 </span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-05-18T09:33:13+08:00"
-              content="2016-05-18" >
-          05-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/05/14/2016-05-14-github/" itemprop="url">
-              
-                <span itemprop="name">github关联远程仓库 </span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-05-14T09:33:13+08:00"
-              content="2016-05-14" >
-          05-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-01T13:16:53+08:00" content="2016-07-01">
+              2016-07-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Rx系列之RxJava操作符"><a href="#Rx系列之RxJava操作符" class="headerlink" title="Rx系列之RxJava操作符"></a>Rx系列之RxJava操作符</h2><p>在前面一章节中，讲解了Rxjava的基本的组成，他们之间的关系，这一章，主要让大家了解一下在RxJava中的操作符。但是在这之前，我们还得先了解一下 Scheduler(调度器) </p>
+<h3 id="Scheduler-调度器"><a href="#Scheduler-调度器" class="headerlink" title="Scheduler(调度器)"></a>Scheduler(调度器)</h3><p>在上一章节，我们讲到了，Rxjava的就是<strong>异步</strong>。<br>那么如何让他进行异步呢？这就要用到我们的调度器了。<br>先看看RxJava中调度器支持哪几种调度：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">调度器类型</th>
+<th style="text-align:center">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Schedulers.computation( )</td>
+<td style="text-align:center">用于计算任务，如事件循环或和回调处理，不要用于IO操作(IO操作请使用Schedulers.io())；默认线程数等于处理器的数量</td>
+</tr>
+<tr>
+<td style="text-align:center">Schedulers.from(executor)</td>
+<td style="text-align:center">使用指定的Executor作为调度器</td>
+</tr>
+<tr>
+<td style="text-align:center">Schedulers.immediate( )</td>
+<td style="text-align:center">在当前线程立即开始执行任务</td>
+</tr>
+<tr>
+<td style="text-align:center">Schedulers.io( )</td>
+<td style="text-align:center">用于IO密集型任务，如异步阻塞IO操作，这个调度器的线程池会根据需要增长；对于普通的计算任务，请使用Schedulers.computation()；Schedulers.io( )默认是一个CachedThreadScheduler，很像一个有线程缓存的新线程调度器</td>
+</tr>
+<tr>
+<td style="text-align:center">Schedulers.newThread( )</td>
+<td style="text-align:center">为每个任务创建一个新线程</td>
+</tr>
+<tr>
+<td style="text-align:center">Schedulers.trampoline( )</td>
+<td style="text-align:center">当其它排队的任务完成后，在当前线程排队开始执行</td>
+</tr>
+</tbody>
+</table>
+<p>有了上述所说的几种调度之后，就可以调用subscribeOn()和observeOn()来对线程进行调度了。<br><strong>subscribeOn()指定：Observable将全部的处理过程（包括发射数据和通知）放在特定的调度器上执行。</strong><br><strong>ObserveOn()指定：一个Observable在一个特定的调度器上调用观察者的onNext, onError和onCompleted方法，</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Subscriber subcriber = <span class="keyword">new</span> Subscriber&lt;String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Log.d(TAG, <span class="string">"onCompleted: Completed!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line">        Log.d(TAG, <span class="string">"onError: Error!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        Log.d(TAG, <span class="string">"onNext: "</span> + s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Observable.just(<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>)</span><br><span class="line">        .subscribeOn(Schedulers.io())</span><br><span class="line">        .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">        .subscribe(subcriber);</span><br></pre></td></tr></table></figure>
+<p><strong>上面这段代码中，由于指定了1，2，3，4发射代码为Schedulers.io()，那么发射数据就将在io线程中执行。而onNext, onError和onCompleted则将在主线中执行。</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/29/Rx家族之RxJava/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -327,6 +425,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -346,8 +448,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.jpg"
@@ -397,6 +508,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Rx系列之RxJava操作符"><span class="nav-number">1.</span> <span class="nav-text">Rx系列之RxJava操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scheduler-调度器"><span class="nav-number">1.1.</span> <span class="nav-text">Scheduler(调度器)</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -500,6 +622,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
