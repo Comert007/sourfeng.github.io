@@ -1,0 +1,780 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="android," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Rxjava2.0也发布了一段时间了。然后看到一些小的不同，就跟大大们分享一下，如果有什么不合适的就直接☞（指出）哈！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="体味RxJava2.0(一)">
+<meta property="og:url" content="http://yoursite.com/2017/01/06/体味rxjava2.0（一）/index.html">
+<meta property="og:site_name" content="Sourfeng Blog">
+<meta property="og:description" content="Rxjava2.0也发布了一段时间了。然后看到一些小的不同，就跟大大们分享一下，如果有什么不合适的就直接☞（指出）哈！">
+<meta property="og:image" content="https://dn-mhke0kuv.qbox.me/1cfc1779f2a93ad2f7c8.png">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1978544-d4527e27f47f3dc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-01-06T09:53:07.791Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="体味RxJava2.0(一)">
+<meta name="twitter:description" content="Rxjava2.0也发布了一段时间了。然后看到一些小的不同，就跟大大们分享一下，如果有什么不合适的就直接☞（指出）哈！">
+<meta name="twitter:image" content="https://dn-mhke0kuv.qbox.me/1cfc1779f2a93ad2f7c8.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 体味RxJava2.0(一) | Sourfeng Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sourfeng Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Sharing technology</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                体味RxJava2.0(一)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-06T17:52:14+08:00" content="2017-01-06">
+              2017-01-06
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Rxjava2.0也发布了一段时间了。然后看到一些小的不同，就跟大大们分享一下，如果有什么不合适的就直接☞（指出）哈！</p>
+<h3 id="2-0的模式"><a href="#2-0的模式" class="headerlink" title="2.0的模式"></a>2.0的模式</h3><p>在1.0中就提到过rxjava使用的是观察者模式，在2.0中仍然么有改变。但是在2.0中为了解决1.0中的一个不完善的问题——Backpressure（背压）,支持了两种不同的观察者模式。</p>
+<ul>
+<li>Observable(被观察者)/Observer（观察者）</li>
+<li>Flowable(被观察者)/Subscriber(观察者)</li>
+</ul>
+<p><img src="https://dn-mhke0kuv.qbox.me/1cfc1779f2a93ad2f7c8.png" alt="观察者模式"></p>
+<p>在2.0中专门对背压或者不背压进行了区分。如果是不背压就使用第一种方式，如果是背压就使用第二种方式。<br><strong>注意：Obsesrver用于订阅Observable，而Subscriber用于订阅Flowable</strong></p>
+<h3 id="背压策略"><a href="#背压策略" class="headerlink" title="背压策略"></a>背压策略</h3><p>说了那么多，那什么是背压，被压其实就是一种策略。在1.0中，我们就知道被观察者发送一个事件，观察者就处理一个事件，一直到onError()或者onCompleted()。那么，这样就产生了一个问题：如果被观察者的发送速度大于观察的处理速度，那么就会在内存中堆积，当堆积的数量达到了128，就会抛出</p>
+<pre><code>Caused by: rx.exceptions.MissingBackpressureException
+</code></pre><p>的异常。在2.0中就不会出现这中问题，如果仍然使用上面的<strong> Observable(被观察者)/Observer（观察者）</strong>方式，在达到128的时候，也不会抛出这个异常，它会继续堆积，直到OutOfMemoryError(内存溢出)<br>那么就借用大神的一句话来总结一下背压<br><strong>背压是指在异步场景中，被观察者发送事件速度远快于观察者的处理速度的情况下，一种告诉上游的被观察者降低发送速度的策略</strong></p>
+<h3 id="Observer-Subscriber（观察者）"><a href="#Observer-Subscriber（观察者）" class="headerlink" title="Observer/Subscriber（观察者）"></a>Observer/Subscriber（观察者）</h3><p>从上面我们可以知道，支持背压和不支持背压是通过下游（观察者）通知上游（被观察者），先得了解一下观察者的变化：</p>
+<h4 id="Observer"><a href="#Observer" class="headerlink" title="Observer"></a>Observer</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Observer&lt;Integer&gt; observer = <span class="keyword">new</span> Observer&lt;Integer&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Disposable d)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Integer value)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            Log.d(TAG,value+<span class="string">""</span>);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            Log.d(TAG,<span class="string">"compeleted.."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    Observable.range(<span class="number">1</span>,<span class="number">5</span>).subscribe(observer);</span><br></pre></td></tr></table></figure>
+<p>可以看到在2.0中对Observer增加了一个 <strong>onSubscribe(Disposable d)</strong> 的方法。这个方法是在执行订阅之后发送数据之前会调用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Represents a disposable resource.</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Disposable</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * Dispose the resource, the operation should be idempotent.</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dispose</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * Returns true if this resource has been disposed.</span><br><span class="line">     * <span class="doctag">@return</span> true if this resource has been disposed</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isDisposed</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在订阅时将一个Disposable传入观察者，这个Disposable其实就是Subscription，可以用于取消订阅。<br><strong>dispose() 用于取消订阅</strong><br>比如，将上面的onSubscribe()和onNext()更改一下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">private</span> Disposable disposable;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Disposable d)</span> </span>&#123;</span><br><span class="line">    Log.d(TAG, <span class="string">"Disposable---&gt;&gt;&gt;&gt;"</span>);</span><br><span class="line">    disposable = d;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Integer value)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (value == <span class="number">3</span>)</span><br><span class="line">        disposable.dispose();</span><br><span class="line">     <span class="keyword">else</span>&#123;</span><br><span class="line">         Log.d(TAG, value + <span class="string">""</span>);</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>结果就会输出：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">onNext---&gt;<span class="number">1</span></span><br><span class="line">onNext---&gt;<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>后面的几个数字就不能被发出了。<br>那么问题来了：<br><strong>1. 可以看出上面被终止之后没有打印onError()或者onCompleted(),这是为什么呢？</strong><br><strong>2. 如果我想恢复继续发送呢，这个时候该怎么办呢？</strong><br>对于1，disposable.dispose()取消订阅，就相当于说，观察者已经不再订阅被观察者了，所以不论被观察者是什么情况，观察者都不再执行任何操作！<br>对于2， 取消订阅意味着我跟你无关了，只能重新订阅~~</p>
+<h4 id="Subscriber"><a href="#Subscriber" class="headerlink" title="Subscriber"></a>Subscriber</h4><p>先看一下2.0中神秘的Subscriber：  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Subscriber&lt;Integer&gt; subscriber = <span class="keyword">new</span> Subscriber&lt;Integer&gt;() &#123;</span><br><span class="line">           <span class="meta">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Subscription s)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           <span class="meta">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Integer integer)</span> </span>&#123;</span><br><span class="line">               Log.d(TAG, <span class="string">"onNext---&gt;&gt;&gt;&gt;"</span>+integer);</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           <span class="meta">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable t)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           <span class="meta">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;;</span><br></pre></td></tr></table></figure>
+<p>从上面可以看出和Observer一样，都有一个onSubscribe(Subscription s)的方法，都是在订阅之后发送数据之前调用的，来看看Subscription<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Subscription</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">request</span><span class="params">(<span class="keyword">long</span> n)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cancel</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这其中只有两个方法<strong>request(long n)</strong> 和 <strong>cancel()</strong></p>
+<p><strong>cancel()</strong><br>就是取消订阅，这个没商量，跟上面的Observer一样。<br><strong>request(long n)</strong>     </p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1978544-d4527e27f47f3dc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="flowable.png"></p>
+<p>结合上图，当我们订阅之后    </p>
+<pre><code>Flowable.range(1,10).subscribe(subscriber)；
+</code></pre><p>这时你会发现怎么一个值都不打印，这是因为观察者没有告诉被观察者到底发送几个，所以我们将Subscriber这样修改(<strong>这时就会用到request(n)</strong>)：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Subscriber&lt;Integer&gt; subscriber = <span class="keyword">new</span> Subscriber&lt;Integer&gt;() &#123;</span><br><span class="line">           Subscription sub;</span><br><span class="line">           <span class="meta">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Subscription s)</span> </span>&#123;</span><br><span class="line">               Log.d(TAG, <span class="string">"onSubscribe---&gt;&gt;&gt;&gt;"</span>);</span><br><span class="line">               sub = s;</span><br><span class="line">               s.request(<span class="number">1</span>);</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           <span class="meta">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Integer integer)</span> </span>&#123;</span><br><span class="line">               Log.d(TAG, <span class="string">"onNext---&gt;&gt;&gt;&gt;"</span>+integer);</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           <span class="meta">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable t)</span> </span>&#123;</span><br><span class="line">               Log.d(TAG, <span class="string">"onError---&gt;&gt;&gt;&gt;"</span>+t.getMessage());</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           <span class="meta">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">               Log.d(TAG, <span class="string">"onComplete---&gt;&gt;&gt;&gt;"</span>);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;;</span><br></pre></td></tr></table></figure></p>
+<p>这样修改之后，你会发现只是打印了一个值，后面的值都没有打印处理，这是因为打印完成一个之后，必须继续以这种方式告诉被观察者你下一次需要几个：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Subscriber&lt;Integer&gt; subscriber = <span class="keyword">new</span> Subscriber&lt;Integer&gt;() &#123;</span><br><span class="line">          Subscription sub;</span><br><span class="line">          <span class="meta">@Override</span></span><br><span class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Subscription s)</span> </span>&#123;</span><br><span class="line">              Log.d(TAG, <span class="string">"onSubscribe---&gt;&gt;&gt;&gt;"</span>);</span><br><span class="line">              sub = s;</span><br><span class="line">              s.request(<span class="number">1</span>);</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="meta">@Override</span></span><br><span class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Integer integer)</span> </span>&#123;</span><br><span class="line">              Log.d(TAG, <span class="string">"onNext---&gt;&gt;&gt;&gt;"</span>+integer);</span><br><span class="line">              sub.request(<span class="number">1</span>);</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="meta">@Override</span></span><br><span class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable t)</span> </span>&#123;</span><br><span class="line">              Log.d(TAG, <span class="string">"onError---&gt;&gt;&gt;&gt;"</span>+t.getMessage());</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="meta">@Override</span></span><br><span class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">              Log.d(TAG, <span class="string">"onComplete---&gt;&gt;&gt;&gt;"</span>);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;;</span><br></pre></td></tr></table></figure>
+<p>我们结合上图综合来看，当订阅之后，首先在onSubscribe(Subscription s)方法中调用了 <strong>s.request(1)</strong>，我们说了onSubscribe(Subscription s)会在订阅后发送数据前调用，所以这里面先<strong>request(1)</strong><br>，在onNext()的<strong>sub.request(1)</strong>，这个就是告诉被观察者，我下次需要1个,然后就向下send(1),依次继续打印，就打印完成所有~~。</p>
+<h3 id="Observable-Flowable-被观察者"><a href="#Observable-Flowable-被观察者" class="headerlink" title="Observable/Flowable(被观察者)"></a>Observable/Flowable(被观察者)</h3><p>对于Observable我们已经比较了解了，但是在2.0中也有些许不同</p>
+<h4 id="Observable"><a href="#Observable" class="headerlink" title="Observable"></a>Observable</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 2.x Observable</span></span><br><span class="line"> Observable&lt;Integer&gt; observable = Observable.create(<span class="keyword">new</span> ObservableOnSubscribe&lt;Integer&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(ObservableEmitter&lt;Integer&gt; emitter)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">                emitter.onNext(<span class="number">1</span>);</span><br><span class="line">                emitter.onNext(<span class="number">2</span>);</span><br><span class="line">                emitter.onNext(<span class="number">3</span>);</span><br><span class="line">                emitter.onNext(<span class="number">4</span>);</span><br><span class="line">                emitter.onComplete();</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="Flowable"><a href="#Flowable" class="headerlink" title="Flowable"></a>Flowable</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Flowable.create(<span class="keyword">new</span> FlowableOnSubscribe&lt;Integer&gt;() &#123;</span><br><span class="line">           <span class="meta">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(FlowableEmitter&lt;Integer&gt; emitter)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">               emitter.onNext(<span class="number">1</span>);</span><br><span class="line">               emitter.onNext(<span class="number">2</span>);</span><br><span class="line">               emitter.onNext(<span class="number">3</span>);</span><br><span class="line">               emitter.onNext(<span class="number">4</span>);</span><br><span class="line">               emitter.onComplete();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;, BackpressureStrategy.BUFFER).subscribe(subscriber);</span><br></pre></td></tr></table></figure>
+<p>从上面看出，两种被观察者的写法差不多，但是Flowable多了一个BackpressureStrategy.BUFFER的参数，仅此而已。</p>
+<p>那么BackpressureStrategy到底是什么？</p>
+<h4 id="BackpressureStrategy"><a href="#BackpressureStrategy" class="headerlink" title="BackpressureStrategy"></a>BackpressureStrategy</h4><p>BackpressureStrategy是背压的策略，有几种方式：   </p>
+<ul>
+<li><strong>MISSING</strong>  不会缓存数据和删除数据，那么下游必须处理溢出</li>
+<li><strong>ERROR</strong>    下游处理事件的速度和上游发送速度不均衡的时候抛出MissingBackpressureException</li>
+<li><strong>BUFFER</strong> 把上游收到的全部缓存下来，等下游来请求再发给下游</li>
+<li><strong>DROP</strong> 丢弃存不下的数据</li>
+<li><strong>LATEST</strong>    一直保留最新的数据</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android/" rel="tag">#android</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/01/Rx系列之RxJava操作符/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="sourfeng" />
+          <p class="site-author-name" itemprop="name">sourfeng</p>
+          <p class="site-description motion-element" itemprop="description">Time goes by so fast, people go in and out of your life. You must never miss the opportunity to tell these people how much they mean to you.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-0的模式"><span class="nav-number">1.</span> <span class="nav-text">2.0的模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背压策略"><span class="nav-number">2.</span> <span class="nav-text">背压策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Observer-Subscriber（观察者）"><span class="nav-number">3.</span> <span class="nav-text">Observer/Subscriber（观察者）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Observer"><span class="nav-number">3.1.</span> <span class="nav-text">Observer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Subscriber"><span class="nav-number">3.2.</span> <span class="nav-text">Subscriber</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Observable-Flowable-被观察者"><span class="nav-number">4.</span> <span class="nav-text">Observable/Flowable(被观察者)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Observable"><span class="nav-number">4.1.</span> <span class="nav-text">Observable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Flowable"><span class="nav-number">4.2.</span> <span class="nav-text">Flowable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BackpressureStrategy"><span class="nav-number">4.3.</span> <span class="nav-text">BackpressureStrategy</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sourfeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>
