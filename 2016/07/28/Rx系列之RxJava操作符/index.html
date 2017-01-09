@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="rxjava," />
 
 
 
@@ -84,35 +84,17 @@
 
 
 
-<meta name="description" content="Rx系列之RxJava操作符在前面一章节中，讲解了Rxjava的基本的组成，他们之间的关系，这一章，主要让大家了解一下在RxJava中的操作符。但是在这之前，我们还得先了解一下 Scheduler(调度器) 
-Scheduler(调度器)在上一章节，我们讲到了，Rxjava的就是异步。那么如何让他进行异步呢？这就要用到我们的调度器了。先看看RxJava中调度器支持哪几种调度：
-
-
-
-调度器类型
-效">
+<meta name="description" content="在前面一章节中，讲解了Rxjava的基本的组成，他们之间的关系，这一章，主要让大家了解一下在RxJava中的操作符。但是在这之前，我们还得先了解一下 Scheduler(调度器)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sourfeng Blog">
-<meta property="og:url" content="http://yoursite.com/2016/07/01/Rx系列之RxJava操作符/index.html">
+<meta property="og:title" content="Rx系列之RxJava操作符">
+<meta property="og:url" content="http://yoursite.com/2016/07/28/Rx系列之RxJava操作符/index.html">
 <meta property="og:site_name" content="Sourfeng Blog">
-<meta property="og:description" content="Rx系列之RxJava操作符在前面一章节中，讲解了Rxjava的基本的组成，他们之间的关系，这一章，主要让大家了解一下在RxJava中的操作符。但是在这之前，我们还得先了解一下 Scheduler(调度器) 
-Scheduler(调度器)在上一章节，我们讲到了，Rxjava的就是异步。那么如何让他进行异步呢？这就要用到我们的调度器了。先看看RxJava中调度器支持哪几种调度：
-
-
-
-调度器类型
-效">
+<meta property="og:description" content="在前面一章节中，讲解了Rxjava的基本的组成，他们之间的关系，这一章，主要让大家了解一下在RxJava中的操作符。但是在这之前，我们还得先了解一下 Scheduler(调度器)">
 <meta property="og:image" content="https://github.com/yuxingxin/RxJava-Essentials-CN/raw/master/images/chapter5_3.png">
-<meta property="og:updated_time" content="2016-07-01T09:38:47.772Z">
+<meta property="og:updated_time" content="2017-01-09T09:47:51.237Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sourfeng Blog">
-<meta name="twitter:description" content="Rx系列之RxJava操作符在前面一章节中，讲解了Rxjava的基本的组成，他们之间的关系，这一章，主要让大家了解一下在RxJava中的操作符。但是在这之前，我们还得先了解一下 Scheduler(调度器) 
-Scheduler(调度器)在上一章节，我们讲到了，Rxjava的就是异步。那么如何让他进行异步呢？这就要用到我们的调度器了。先看看RxJava中调度器支持哪几种调度：
-
-
-
-调度器类型
-效">
+<meta name="twitter:title" content="Rx系列之RxJava操作符">
+<meta name="twitter:description" content="在前面一章节中，讲解了Rxjava的基本的组成，他们之间的关系，这一章，主要让大家了解一下在RxJava中的操作符。但是在这之前，我们还得先了解一下 Scheduler(调度器)">
 <meta name="twitter:image" content="https://github.com/yuxingxin/RxJava-Essentials-CN/raw/master/images/chapter5_3.png">
 
 
@@ -131,7 +113,7 @@ Scheduler(调度器)在上一章节，我们讲到了，Rxjava的就是异步。
   };
 </script>
 
-  <title>  | Sourfeng Blog </title>
+  <title> Rx系列之RxJava操作符 | Sourfeng Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -294,7 +276,7 @@ Scheduler(调度器)在上一章节，我们讲到了，Rxjava的就是异步。
             
             
               
-                
+                Rx系列之RxJava操作符
               
             
           </h1>
@@ -306,8 +288,8 @@ Scheduler(调度器)在上一章节，我们讲到了，Rxjava的就是异步。
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-01T13:16:53+08:00" content="2016-07-01">
-              2016-07-01
+            <time itemprop="dateCreated" datetime="2016-07-28T15:19:45+08:00" content="2016-07-28">
+              2016-07-28
             </time>
           </span>
 
@@ -334,7 +316,7 @@ Scheduler(调度器)在上一章节，我们讲到了，Rxjava的就是异步。
       
 
       
-        <h2 id="Rx系列之RxJava操作符"><a href="#Rx系列之RxJava操作符" class="headerlink" title="Rx系列之RxJava操作符"></a>Rx系列之RxJava操作符</h2><p>在前面一章节中，讲解了Rxjava的基本的组成，他们之间的关系，这一章，主要让大家了解一下在RxJava中的操作符。但是在这之前，我们还得先了解一下 Scheduler(调度器) </p>
+        <h1 id="Rx系列之RxJava操作符"><a href="#Rx系列之RxJava操作符" class="headerlink" title="Rx系列之RxJava操作符"></a>Rx系列之RxJava操作符</h1><p>在前面一章节中，讲解了Rxjava的基本的组成，他们之间的关系，这一章，主要让大家了解一下在RxJava中的操作符。但是在这之前，我们还得先了解一下 Scheduler(调度器) </p>
 <h3 id="Scheduler-调度器"><a href="#Scheduler-调度器" class="headerlink" title="Scheduler(调度器)"></a>Scheduler(调度器)</h3><p>在上一章节，我们讲到了，Rxjava的就是<strong>异步</strong>。<br>那么如何让他进行异步呢？这就要用到我们的调度器了。<br>先看看RxJava中调度器支持哪几种调度：</p>
 <table>
 <thead>
@@ -456,21 +438,27 @@ Sequence complete.
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/rxjava/" rel="tag">#rxjava</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/29/Rx家族之RxJava初识/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2016/06/15/dagger2using/" rel="next" title="让人激动的Dagger2---官方文档翻译 ">
+                <i class="fa fa-chevron-left"></i> 让人激动的Dagger2---官方文档翻译 
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/01/06/体味rxjava2.0（一）/" rel="prev" title="体味RxJava2.0(一)">
-                体味RxJava2.0(一) <i class="fa fa-chevron-right"></i>
+              <a href="/2016/07/28/Rx家族之RxJava初识/" rel="prev" title="Rx系列之RxJava初识">
+                Rx系列之RxJava初识 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -556,7 +544,7 @@ Sequence complete.
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -585,7 +573,7 @@ Sequence complete.
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Rx系列之RxJava操作符"><span class="nav-number">1.</span> <span class="nav-text">Rx系列之RxJava操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scheduler-调度器"><span class="nav-number">1.1.</span> <span class="nav-text">Scheduler(调度器)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Operators-操作符"><span class="nav-number">1.2.</span> <span class="nav-text">Operators(操作符)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#map家族"><span class="nav-number">1.2.1.</span> <span class="nav-text">map家族</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#map"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">map</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#flatmap"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">flatmap</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ConcatMap"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">ConcatMap</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他操作符"><span class="nav-number">1.2.2.</span> <span class="nav-text">其他操作符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#repeat"><span class="nav-number">1.2.3.</span> <span class="nav-text">repeat</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#range"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">range</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#interval"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">interval</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#take"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">take</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#TakeLast"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">TakeLast</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Rx系列之RxJava操作符"><span class="nav-number">1.</span> <span class="nav-text">Rx系列之RxJava操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scheduler-调度器"><span class="nav-number">1.0.1.</span> <span class="nav-text">Scheduler(调度器)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Operators-操作符"><span class="nav-number">1.0.2.</span> <span class="nav-text">Operators(操作符)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#map家族"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">map家族</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#map"><span class="nav-number">1.0.2.1.1.</span> <span class="nav-text">map</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#flatmap"><span class="nav-number">1.0.2.1.2.</span> <span class="nav-text">flatmap</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ConcatMap"><span class="nav-number">1.0.2.1.3.</span> <span class="nav-text">ConcatMap</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他操作符"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">其他操作符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#repeat"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">repeat</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#range"><span class="nav-number">1.0.2.3.1.</span> <span class="nav-text">range</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#interval"><span class="nav-number">1.0.2.3.2.</span> <span class="nav-text">interval</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#take"><span class="nav-number">1.0.2.3.3.</span> <span class="nav-text">take</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#TakeLast"><span class="nav-number">1.0.2.3.4.</span> <span class="nav-text">TakeLast</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>

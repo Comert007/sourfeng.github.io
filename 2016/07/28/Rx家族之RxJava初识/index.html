@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="rxjava," />
 
 
 
@@ -84,14 +84,12 @@
 
 
 
-<meta name="description" content="Rx系列之RxJava初识写在前面的话第一次听说Rxjava的时候，我顿时就懵b了,什么事RxJava？新的一门强大的语言么！顿时怀着对RxJava的期待，慢慢的去了解了。后来才发现，RxJava其实用到了响应式开发的一种新的开发模式。响应式开发，哇，感觉不得鸟啊！所以在不断的挖掘下，对RxJava做了一个稍微的整理。
-响应式编程在开始了解RxJava之前，得先了解一下响应式编程，这是因为Rx响应">
+<meta name="description" content="第一次听说Rxjava的时候，我顿时就懵b了,什么事RxJava？新的一门强大的语言么！顿时怀着对RxJava的期待，慢慢的去了解了。后来才发现，RxJava其实用到了响应式开发的一种新的开发模式。响应式开发，哇，感觉不得鸟啊！所以在不断的挖掘下，对RxJava做了一个稍微的整理。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sourfeng Blog">
-<meta property="og:url" content="http://yoursite.com/2016/06/29/Rx家族之RxJava初识/index.html">
+<meta property="og:title" content="Rx系列之RxJava初识">
+<meta property="og:url" content="http://yoursite.com/2016/07/28/Rx家族之RxJava初识/index.html">
 <meta property="og:site_name" content="Sourfeng Blog">
-<meta property="og:description" content="Rx系列之RxJava初识写在前面的话第一次听说Rxjava的时候，我顿时就懵b了,什么事RxJava？新的一门强大的语言么！顿时怀着对RxJava的期待，慢慢的去了解了。后来才发现，RxJava其实用到了响应式开发的一种新的开发模式。响应式开发，哇，感觉不得鸟啊！所以在不断的挖掘下，对RxJava做了一个稍微的整理。
-响应式编程在开始了解RxJava之前，得先了解一下响应式编程，这是因为Rx响应">
+<meta property="og:description" content="第一次听说Rxjava的时候，我顿时就懵b了,什么事RxJava？新的一门强大的语言么！顿时怀着对RxJava的期待，慢慢的去了解了。后来才发现，RxJava其实用到了响应式开发的一种新的开发模式。响应式开发，哇，感觉不得鸟啊！所以在不断的挖掘下，对RxJava做了一个稍微的整理。">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/52eb2279jw1f2rx409pcnj2044048mx5.jpg">
 <meta property="og:image" content="http://ww3.sinaimg.cn/mw1024/52eb2279jw1f2rx4446ldj20ga03p74h.jpg">
 <meta property="og:image" content="https://mcxiaoke.gitbooks.io/rxdocs/content/images/S.AsyncSubject.png">
@@ -100,11 +98,10 @@
 <meta property="og:image" content="https://mcxiaoke.gitbooks.io/rxdocs/content/images/S.BehaviorSubject.e.png">
 <meta property="og:image" content="https://mcxiaoke.gitbooks.io/rxdocs/content/images/S.ReplaySubject.png">
 <meta property="og:image" content="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/S.PublishSubject.png">
-<meta property="og:updated_time" content="2016-07-01T05:13:30.872Z">
+<meta property="og:updated_time" content="2017-01-09T09:47:13.173Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sourfeng Blog">
-<meta name="twitter:description" content="Rx系列之RxJava初识写在前面的话第一次听说Rxjava的时候，我顿时就懵b了,什么事RxJava？新的一门强大的语言么！顿时怀着对RxJava的期待，慢慢的去了解了。后来才发现，RxJava其实用到了响应式开发的一种新的开发模式。响应式开发，哇，感觉不得鸟啊！所以在不断的挖掘下，对RxJava做了一个稍微的整理。
-响应式编程在开始了解RxJava之前，得先了解一下响应式编程，这是因为Rx响应">
+<meta name="twitter:title" content="Rx系列之RxJava初识">
+<meta name="twitter:description" content="第一次听说Rxjava的时候，我顿时就懵b了,什么事RxJava？新的一门强大的语言么！顿时怀着对RxJava的期待，慢慢的去了解了。后来才发现，RxJava其实用到了响应式开发的一种新的开发模式。响应式开发，哇，感觉不得鸟啊！所以在不断的挖掘下，对RxJava做了一个稍微的整理。">
 <meta name="twitter:image" content="http://ww4.sinaimg.cn/large/52eb2279jw1f2rx409pcnj2044048mx5.jpg">
 
 
@@ -123,7 +120,7 @@
   };
 </script>
 
-  <title>  | Sourfeng Blog </title>
+  <title> Rx系列之RxJava初识 | Sourfeng Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -286,7 +283,7 @@
             
             
               
-                
+                Rx系列之RxJava初识
               
             
           </h1>
@@ -298,8 +295,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-29T17:39:22+08:00" content="2016-06-29">
-              2016-06-29
+            <time itemprop="dateCreated" datetime="2016-07-28T15:19:45+08:00" content="2016-07-28">
+              2016-07-28
             </time>
           </span>
 
@@ -326,7 +323,7 @@
       
 
       
-        <h2 id="Rx系列之RxJava初识"><a href="#Rx系列之RxJava初识" class="headerlink" title="Rx系列之RxJava初识"></a>Rx系列之RxJava初识</h2><h3 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h3><p>第一次听说Rxjava的时候，我顿时就懵b了,什么事RxJava？新的一门强大的语言么！顿时怀着对RxJava的期待，慢慢的去了解了。后来才发现，RxJava其实用到了响应式开发的一种新的开发模式。响应式开发，哇，感觉不得鸟啊！所以在不断的挖掘下，对RxJava做了一个稍微的整理。</p>
+        <h1 id="Rx系列之RxJava初识"><a href="#Rx系列之RxJava初识" class="headerlink" title="Rx系列之RxJava初识"></a>Rx系列之RxJava初识</h1><h3 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h3><p>第一次听说Rxjava的时候，我顿时就懵b了,什么事RxJava？新的一门强大的语言么！顿时怀着对RxJava的期待，慢慢的去了解了。后来才发现，RxJava其实用到了响应式开发的一种新的开发模式。响应式开发，哇，感觉不得鸟啊！所以在不断的挖掘下，对RxJava做了一个稍微的整理。</p>
 <h3 id="响应式编程"><a href="#响应式编程" class="headerlink" title="响应式编程"></a>响应式编程</h3><p>在开始了解RxJava之前，得先了解一下<strong>响应式编程</strong>，这是因为Rx响应式编程也是响应式编程的一种。<strong>响应式编程：一种面向数据流和变化传播的编程范式。</strong>不懂啊，没关系，我们来举个栗子：<br><img src="http://ww4.sinaimg.cn/large/52eb2279jw1f2rx409pcnj2044048mx5.jpg" alt=""><br>例如，在我们现在的命令式编程中，a = b + c 表示将表达式的结果赋值给a,那么之后，我改变b或者c之后，a会改变么？有人可能会说肯定会啊。其实是不会变的:</p>
 <pre><code>a = b + c;
 a = ?
@@ -472,21 +469,27 @@ onNext: three
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/rxjava/" rel="tag">#rxjava</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/15/dagger2using/" rel="next" title="让人激动的Dagger2---官方文档翻译 ">
-                <i class="fa fa-chevron-left"></i> 让人激动的Dagger2---官方文档翻译 
+              <a href="/2016/07/28/Rx系列之RxJava操作符/" rel="next" title="Rx系列之RxJava操作符">
+                <i class="fa fa-chevron-left"></i> Rx系列之RxJava操作符
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/07/01/Rx系列之RxJava操作符/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/01/06/体味rxjava2.0（一）/" rel="prev" title="体味RxJava2.0(一)">
+                体味RxJava2.0(一) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -572,7 +575,7 @@ onNext: three
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -601,7 +604,7 @@ onNext: three
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Rx系列之RxJava初识"><span class="nav-number">1.</span> <span class="nav-text">Rx系列之RxJava初识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面的话"><span class="nav-number">1.1.</span> <span class="nav-text">写在前面的话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应式编程"><span class="nav-number">1.2.</span> <span class="nav-text">响应式编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RxJava之Observables"><span class="nav-number">1.3.</span> <span class="nav-text">RxJava之Observables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#观察者模式"><span class="nav-number">1.4.</span> <span class="nav-text">观察者模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rxjava的观察者模式"><span class="nav-number">1.5.</span> <span class="nav-text">Rxjava的观察者模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Observer（观察者）"><span class="nav-number">1.6.</span> <span class="nav-text">Observer（观察者）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Subcriber"><span class="nav-number">1.7.</span> <span class="nav-text">Subcriber</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建Observable"><span class="nav-number">1.8.</span> <span class="nav-text">创建Observable</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Observable-create"><span class="nav-number">1.8.1.</span> <span class="nav-text">Observable.create()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#订阅"><span class="nav-number">1.8.2.</span> <span class="nav-text">订阅</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Observable-from"><span class="nav-number">1.8.3.</span> <span class="nav-text">Observable.from()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Observable-just"><span class="nav-number">1.8.4.</span> <span class="nav-text">Observable.just()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Subjects"><span class="nav-number">1.9.</span> <span class="nav-text">Subjects</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AsyncSubject"><span class="nav-number">1.9.1.</span> <span class="nav-text">AsyncSubject</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BehaviorSubject"><span class="nav-number">1.9.2.</span> <span class="nav-text">BehaviorSubject</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ReplaySubject"><span class="nav-number">1.9.3.</span> <span class="nav-text">ReplaySubject</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PublishSubject"><span class="nav-number">1.9.4.</span> <span class="nav-text">PublishSubject</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Rx系列之RxJava初识"><span class="nav-number">1.</span> <span class="nav-text">Rx系列之RxJava初识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面的话"><span class="nav-number">1.0.1.</span> <span class="nav-text">写在前面的话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应式编程"><span class="nav-number">1.0.2.</span> <span class="nav-text">响应式编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RxJava之Observables"><span class="nav-number">1.0.3.</span> <span class="nav-text">RxJava之Observables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#观察者模式"><span class="nav-number">1.0.4.</span> <span class="nav-text">观察者模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rxjava的观察者模式"><span class="nav-number">1.0.5.</span> <span class="nav-text">Rxjava的观察者模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Observer（观察者）"><span class="nav-number">1.0.6.</span> <span class="nav-text">Observer（观察者）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Subcriber"><span class="nav-number">1.0.7.</span> <span class="nav-text">Subcriber</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建Observable"><span class="nav-number">1.0.8.</span> <span class="nav-text">创建Observable</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Observable-create"><span class="nav-number">1.0.8.1.</span> <span class="nav-text">Observable.create()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#订阅"><span class="nav-number">1.0.8.2.</span> <span class="nav-text">订阅</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Observable-from"><span class="nav-number">1.0.8.3.</span> <span class="nav-text">Observable.from()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Observable-just"><span class="nav-number">1.0.8.4.</span> <span class="nav-text">Observable.just()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Subjects"><span class="nav-number">1.0.9.</span> <span class="nav-text">Subjects</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AsyncSubject"><span class="nav-number">1.0.9.1.</span> <span class="nav-text">AsyncSubject</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BehaviorSubject"><span class="nav-number">1.0.9.2.</span> <span class="nav-text">BehaviorSubject</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ReplaySubject"><span class="nav-number">1.0.9.3.</span> <span class="nav-text">ReplaySubject</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PublishSubject"><span class="nav-number">1.0.9.4.</span> <span class="nav-text">PublishSubject</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
