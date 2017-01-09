@@ -92,7 +92,7 @@
 <meta property="og:description" content="Rxjava2.0也发布了一段时间了。然后看到一些小的不同，就跟大大们分享一下，如果有什么不合适的就直接☞（指出）哈！">
 <meta property="og:image" content="https://dn-mhke0kuv.qbox.me/1cfc1779f2a93ad2f7c8.png">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1978544-d4527e27f47f3dc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-01-06T09:53:07.791Z">
+<meta property="og:updated_time" content="2017-01-09T03:35:43.063Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="体味RxJava2.0(一)">
 <meta name="twitter:description" content="Rxjava2.0也发布了一段时间了。然后看到一些小的不同，就跟大大们分享一下，如果有什么不合适的就直接☞（指出）哈！">
@@ -317,7 +317,7 @@
       
 
       
-        <p>Rxjava2.0也发布了一段时间了。然后看到一些小的不同，就跟大大们分享一下，如果有什么不合适的就直接☞（指出）哈！</p>
+        <h1 id="体味RxJava2-0-一"><a href="#体味RxJava2-0-一" class="headerlink" title="体味RxJava2.0(一)"></a>体味RxJava2.0(一)</h1><p>Rxjava2.0也发布了一段时间了。然后看到一些小的不同，就跟大大们分享一下，如果有什么不合适的就直接☞（指出）哈！</p>
 <h3 id="2-0的模式"><a href="#2-0的模式" class="headerlink" title="2.0的模式"></a>2.0的模式</h3><p>在1.0中就提到过rxjava使用的是观察者模式，在2.0中仍然么有改变。但是在2.0中为了解决1.0中的一个不完善的问题——Backpressure（背压）,支持了两种不同的观察者模式。</p>
 <ul>
 <li>Observable(被观察者)/Observer（观察者）</li>
@@ -512,7 +512,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-0的模式"><span class="nav-number">1.</span> <span class="nav-text">2.0的模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背压策略"><span class="nav-number">2.</span> <span class="nav-text">背压策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Observer-Subscriber（观察者）"><span class="nav-number">3.</span> <span class="nav-text">Observer/Subscriber（观察者）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Observer"><span class="nav-number">3.1.</span> <span class="nav-text">Observer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Subscriber"><span class="nav-number">3.2.</span> <span class="nav-text">Subscriber</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Observable-Flowable-被观察者"><span class="nav-number">4.</span> <span class="nav-text">Observable/Flowable(被观察者)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Observable"><span class="nav-number">4.1.</span> <span class="nav-text">Observable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Flowable"><span class="nav-number">4.2.</span> <span class="nav-text">Flowable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BackpressureStrategy"><span class="nav-number">4.3.</span> <span class="nav-text">BackpressureStrategy</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#体味RxJava2-0-一"><span class="nav-number">1.</span> <span class="nav-text">体味RxJava2.0(一)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-0的模式"><span class="nav-number">1.0.1.</span> <span class="nav-text">2.0的模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背压策略"><span class="nav-number">1.0.2.</span> <span class="nav-text">背压策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Observer-Subscriber（观察者）"><span class="nav-number">1.0.3.</span> <span class="nav-text">Observer/Subscriber（观察者）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Observer"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">Observer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Subscriber"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">Subscriber</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Observable-Flowable-被观察者"><span class="nav-number">1.0.4.</span> <span class="nav-text">Observable/Flowable(被观察者)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Observable"><span class="nav-number">1.0.4.1.</span> <span class="nav-text">Observable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Flowable"><span class="nav-number">1.0.4.2.</span> <span class="nav-text">Flowable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BackpressureStrategy"><span class="nav-number">1.0.4.3.</span> <span class="nav-text">BackpressureStrategy</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
