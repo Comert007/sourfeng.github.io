@@ -1,0 +1,890 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="spring-data-jpa," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="在使用spring-data-jpa时，遇到的一些问题，然后查阅资料，对其中的注解部分进行了整理，方便以后使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring-data JPA 注解详解">
+<meta property="og:url" content="http://yoursite.com/2017/05/08/spring-data-jpa/index.html">
+<meta property="og:site_name" content="木子 oto">
+<meta property="og:description" content="在使用spring-data-jpa时，遇到的一些问题，然后查阅资料，对其中的注解部分进行了整理，方便以后使用">
+<meta property="og:updated_time" content="2017-05-08T07:43:24.437Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring-data JPA 注解详解">
+<meta name="twitter:description" content="在使用spring-data-jpa时，遇到的一些问题，然后查阅资料，对其中的注解部分进行了整理，方便以后使用">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Spring-data JPA 注解详解 | 木子 oto </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">木子 oto</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Sharing technology</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Spring-data JPA 注解详解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-08T15:29:34+08:00" content="2017-05-08">
+              2017-05-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/spring-boot/" itemprop="url" rel="index">
+                    <span itemprop="name">spring boot</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="基本属性"><a href="#基本属性" class="headerlink" title="基本属性"></a>基本属性</h1><h2 id="Id-and-GeneratedValue"><a href="#Id-and-GeneratedValue" class="headerlink" title="@Id and @GeneratedValue"></a>@Id and @GeneratedValue</h2><p><code>@Id</code> 标注应用于实体类的属性或者属性对应的<code>getter</code>方法，表示该属性映射为数据库表的主键。     </p>
+<p><code>@GeneratedValue</code>与<code>@Id</code>一同使用，表示主键的生成策略，通过strategy属性指定。<br>在<code>javax.persistence.GenerationType</code>定义了如下几种策略：</p>
+<ul>
+<li><code>IDENTITY</code>：采用数据库<code>ID</code>自增长的方式产生主键，<code>Oracle</code>不支持这种方式。     </li>
+<li><code>AUTO</code>： JPA自动选择合适的策略，是默认选项。     </li>
+<li><code>SEQUENCE</code>：通过序列产生主键，通过<code>@SequenceGenerator</code>标注指定序列名，MySQL不支持这种方式。   </li>
+<li><p><code>TABLE</code>：通过表产生主键，框架借由表模拟序列产生主键，使用该策略更易于做数据库移植。     </p>
+<h2 id="Column"><a href="#Column" class="headerlink" title="@Column"></a>@Column</h2><p>@Column注解来标识实体类中属性与数据表中字段的对应关系，一共10个属性，并且这10个属性均是可选属性。详细内容如下：    </p>
+</li>
+<li><p><code>name</code>：表示数据库表中该字段的名称，默认情形属性名称一致。       </p>
+</li>
+<li><code>nullable</code>：表示该字段是否允许为<code>null</code>，默认为<code>true</code>。      </li>
+<li><code>unique</code>：表示该字段是否是唯一标识，默认为<code>false</code>。         </li>
+<li><code>length</code>：表示该字段的大小，仅对<code>String</code>类型的字段有效。      </li>
+<li><code>insertable</code>：表示在<code>ORM</code>框架执行插入操作时，该字段是否应出现<code>INSETRT</code>语句中，默认为<code>true</code>。        </li>
+<li><code>updateable</code>：表示在ORM框架执行更新操作时，该字段是否应该出现在<code>UPDATE</code>语句中，默认为<code>true</code>。对于一经创建就不能更改的字段，该属性非常有用，比如<code>email</code>属性。               </li>
+<li><code>columnDefinition</code>：表示该字段在数据库中的实际类型。通常ORM框架可以根据属性类型自动判断数据库中字段的类型，但是依然有些例外：<br>  ①<code>Date</code>类型无法确定数据库中字段类型究竟是<code>DATE</code>、<code>TIME</code>还是<code>TIMESTAMP</code><br>  ②<code>String</code>的默认映射类型为<code>VARCHAR</code>，如果希望将<code>String</code>类型映射到特定数据库的<code>BLOB</code>或<code>TEXT</code>字段类型，则需要进行设置</li>
+<li><code>table</code>：表示包含当前字段的表名，很少使用      </li>
+<li><code>precision</code>和<code>scale</code>：表示精度，当字段类型为<code>double</code>时，<code>precision</code>表示数值的总长度，<code>scale</code>表示小数所占位数。</li>
+</ul>
+<p>由于上面的<code>insertable</code>和<code>updateable</code>是一样的性质，这里只是对<code>insertable</code>做说明，<br>当以这种方式向数据库插入数据时(000003000002,lili,产品,23)：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Id</span></span><br><span class="line"><span class="keyword">private</span> String id;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="keyword">private</span> String intro;</span><br><span class="line"><span class="meta">@Column</span>(insertable = <span class="keyword">false</span>)</span><br><span class="line"><span class="keyword">private</span> String age;</span><br></pre></td></tr></table></figure>
+<p>当查询数据库时，显示的确是这样：        </p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>age</th>
+<th>intro</th>
+<th>name</th>
+<th>businesses_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>000003000002</td>
+<td>null</td>
+<td>产品</td>
+<td>lili</td>
+<td>000003</td>
+</tr>
+</tbody>
+</table>
+<p>正如上面看到的那样，如果添加了<code>@Column(insertable = false)</code>,那么在插入数据的时候，将不会被写入数据库</p>
+<h2 id="Basic和-Transient"><a href="#Basic和-Transient" class="headerlink" title="@Basic和@Transient"></a>@Basic和@Transient</h2><p><code>@Basic</code>表示属性到数据库表的字段的映射。<br><code>@Basic</code>有两个常用属性：      </p>
+<ul>
+<li><code>fetch</code>: 表示实体类对应属性的读取策略，有<code>EAGER</code>和<code>LAZY</code>两种取值，分别表示主动抓取和延迟加载，默认值为<code>EAGER</code>。        </li>
+<li><code>optional</code>:表示该属性是否允许为<code>null</code>，默认值为<code>true</code>。</li>
+</ul>
+<p><code>@Transient</code>表示该属性并非一个到数据库表的字段的映射，JPA将忽略该属性。<br>如果一个属性并非数据库表的字段映射，就务必将其标注为<code>@Transient</code>，否则JPA默认其注解为<code>@Basic</code>。</p>
+<h2 id="Temporal"><a href="#Temporal" class="headerlink" title="@Temporal"></a>@Temporal</h2><p>在数据库中，表示时间类型的数据有 <code>DATE</code>，<code>TIME</code>，和 <code>TIMESTAMP</code> 三种精度 ( 即单纯的日期，时间，或者两者兼备 )。 可使用<code>@Temporal</code>来设置<code>Date</code>类型的属性映射到对应精度的字段。</p>
+<ul>
+<li><code>@Temporal(TemporalType.DATE)</code>映射为日期 // date （只有日期）      </li>
+<li><code>@Temporal(TemporalType.TIME)</code>映射为日期 // time （是有时间）      </li>
+<li><code>@Temporal(TemporalType.TIMESTAMP)</code>映射为日期 // date time （日期+时间）</li>
+</ul>
+<h2 id="Lob"><a href="#Lob" class="headerlink" title="@Lob"></a>@Lob</h2><p><code>@Lob</code>标注表示将属性映射成数据库支持的大对象类型，<code>Clob</code>或者<code>Blog</code>。其中：</p>
+<ul>
+<li><code>Clob（Character Large Ojects）</code>类型是长字符串类型，<code>java.sql.Clob</code>、<code>Character[]</code>、<code>char[]</code> 和 <code>String</code> 将被映射为 <code>Clob</code> 类型。     </li>
+<li><code>Blob（Binary Large Objects）</code>类型是字节类型，<code>java.sql.Blob</code>、<code>Byte[]</code>、<code>byte[]</code> 和 实现了<code>Serializable</code>接口的类型将被映射为<code>Blob</code> 类型。</li>
+</ul>
+<p>因为这两种类型的数据一般占用的内存空间比较大，所以通常使用延迟加载的方式，与<code>@Basic</code>标注同时使用，设置加载方式为<code>FetchType.LAZY</code>。</p>
+<h1 id="FetchType（加载类型）"><a href="#FetchType（加载类型）" class="headerlink" title="FetchType（加载类型）"></a>FetchType（加载类型）</h1><p>##FetchType.EAGER<br>饥饿加载，查询实体A时，会查询关联表B。加载默认使用的就是这种方式，但是需要注意的一点就是，使用这种加载方式，需要有<code>get()</code>方法才能返回正常的数据，换句话说，如果我们想控制不加载某个属性，只需要去掉<code>get()</code>方法就可以了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//public void setLottery(B b) &#123;</span></span><br><span class="line"><span class="comment">//       this.b = b;</span></span><br><span class="line"><span class="comment">//   &#125;</span></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> B <span class="title">getLottery</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> b;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="FetchType-LAZY"><a href="#FetchType-LAZY" class="headerlink" title="FetchType.LAZY"></a>FetchType.LAZY</h2><p>延迟加载，一般用于关联表的查询，查询A实体时，不查询关联B实体。如果写入<code>get()</code>方法，并使用<code>FetchType.LAZY</code>,那么会抛出<code>org.springframework.http.converter.HttpMessageNotWritableException</code>异常，这是由于使用<code>FetchType.LAZY</code>方式时，<code>get()</code>方法返回的并不是一个常规的对象，而是一个<code>JavassistLazyInitializer</code>，从而不能写入JSON文档，那么解决办法就是忽略json，所以需要添加一个<code>@JsonIgnore</code>的注解。当然，如果不写注解，只需要去掉<code>get()</code>方法，也不会这个问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Entity</span><br><span class="line">public class A implements Serializable&#123;</span><br><span class="line">    @Id</span><br><span class="line">    @Column(unique = true,nullable = false,length = 20)</span><br><span class="line">    private String id;   //奖品id(奖品编号)</span><br><span class="line">    @Column(nullable = false,length = 40)</span><br><span class="line">    private String name; //奖品名称</span><br><span class="line">    @Column(nullable = false,length = 20)</span><br><span class="line">    private String num;  //奖品数量</span><br><span class="line"></span><br><span class="line">    @ManyToOne(fetch = FetchType.LAZY)</span><br><span class="line">    @JsonIgnore</span><br><span class="line">    private B b;</span><br><span class="line"></span><br><span class="line">    //忽略部分get，set方法</span><br><span class="line"></span><br><span class="line">    public void setLottery(B b) &#123;</span><br><span class="line">        this.b = b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public B getLottery() &#123;</span><br><span class="line">        return b;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="实体类关系"><a href="#实体类关系" class="headerlink" title="实体类关系"></a>实体类关系</h1><p>JPA<code>@OneToOne</code>、<code>@ManyToOne</code>、<code>OneToMany</code>和<code>@ManyToMany</code>几个标注提供用以定义实体类之间的关系。</p>
+<h2 id="OneToOne-一对一"><a href="#OneToOne-一对一" class="headerlink" title="OneToOne(一对一)"></a>OneToOne(一对一)</h2><p>一对一的属性：</p>
+<ul>
+<li><code>targetEntity</code>属性表示默认关联的实体类型，默认为当前标注的实体类，绝大数据情况下不需要进行设置。</li>
+<li><code>cascade</code>属性表示级联操作策略：<ol>
+<li>不定义,则对关系表不会产生任何影响</li>
+<li><code>CascadeType.PERSIST</code>:级联新建</li>
+<li><code>CascadeType.REMOVE</code>:级联删除</li>
+<li><code>CascadeType.REFRESH</code>: 级联刷新，即重新同步到数据库中状态，会覆盖掉已经修改但是还没保存的实体类属性</li>
+<li><code>CascadeType.MERGE</code>: 级联更新</li>
+<li><code>CascadeType.ALL</code>:表示选择全部四项</li>
+</ol>
+</li>
+<li><code>fetch</code>属性表示实体的加载方式，有<code>LAZY</code>和<code>EAGER</code>两种取值，默认值为<code>EAGER</code>    </li>
+<li><code>optional</code>属性表示关联的实体是否能够存在<code>null</code>值，默认为<code>true</code>，表示可以存在<code>null</code>值<br>关于<code>fetch</code>属性，所有<code>@XXXToOne</code>，默认值为<code>EAGER</code>，所有<code>@XXXToMany</code>，默认值为<code>LAZY</code>。</li>
+</ul>
+<h2 id="JoinColumn"><a href="#JoinColumn" class="headerlink" title="@JoinColumn"></a>@JoinColumn</h2><p>如果使用了<code>@OnetoOne</code>标注，对于表中的字段，会自动映射生成字段名，并且按照如下方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">关联表的名称 + &quot;_&quot; + 关联表主键的字段名</span><br></pre></td></tr></table></figure></p>
+<p>比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Id</span><br><span class="line">private String id;</span><br><span class="line"></span><br><span class="line">private String name;</span><br><span class="line">private String intro;</span><br><span class="line">private String age;</span><br><span class="line"></span><br><span class="line">@OneToOne</span><br><span class="line">private B b;</span><br></pre></td></tr></table></figure>
+<p>那么<code>User</code>表中的自定生成的字段名就为：<code>b_id</code></p>
+<p>如果对应的字段名是其他名字，则可以通过@JoinColumn来定义外键关联的字段名称。比如如果字段名为blog_Id的话，可以这样定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Id</span><br><span class="line">private String id;</span><br><span class="line"></span><br><span class="line">private String name;</span><br><span class="line">private String intro;</span><br><span class="line">private String age;</span><br><span class="line"></span><br><span class="line">@OneToOne(name = &quot;blog_Id&quot;)</span><br><span class="line">private B b;</span><br></pre></td></tr></table></figure>
+<h3 id="双向-OneToOne关联"><a href="#双向-OneToOne关联" class="headerlink" title="双向@OneToOne关联"></a>双向@OneToOne关联</h3><p>如果能从A实体种直接引用到B，则可以为A增加一个类型为B的属性，这样两个实体类就是一种双向关联关系了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class A&#123;</span><br><span class="line">    @Id</span><br><span class="line">    private String id;</span><br><span class="line"></span><br><span class="line">    private String name;</span><br><span class="line">    private String intro;</span><br><span class="line">    private String age;</span><br><span class="line"></span><br><span class="line">    @OneToOne(mappedBy = &quot;a&quot;)</span><br><span class="line">    private B b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注意上面的代码中，不仅用<code>@OneToOne</code>标注了b，同时还设置<code>mappedBy</code>属性。<br>关于mappedBy属性，需要理解一下两点：</p>
+<ul>
+<li><code>mappedBy</code> = “a”表示，当前类（A）是通过B中a属性与之建立关联的。</li>
+<li><p>设置了<code>mappedBy</code>属性的关系标注（各种<code>@XXXToXX</code>），表明当前类是关系的被维护方，而另外一个类则是关系维护方，你可以这样理解： </p>
+<ol>
+<li>关系维护方（B类）对应的是定义外键约束的数据库表     </li>
+<li>关系被维护方（A类）对应于外键所在的数据库表       </li>
+</ol>
+</li>
+</ul>
+<p>最后需要注意的一个问题是，关系维护方才能够操作两者的关系。反过来说，A对象即使设置B属性，如果对该对象进行存储，并不会去更新外键关联，因为A是关系<strong>被维护方</strong>。</p>
+<h2 id="OneToMany-ManyToOne"><a href="#OneToMany-ManyToOne" class="headerlink" title="@OneToMany,@ManyToOne"></a>@OneToMany,@ManyToOne</h2><p>如果在B中也定义一个C类型的成员变量，则两者形成了双向关系，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Entity</span><br><span class="line">class C &#123;</span><br><span class="line">    @ManyToOne</span><br><span class="line">    private B b;</span><br><span class="line">   </span><br><span class="line">    // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Entity</span><br><span class="line">class B &#123;</span><br><span class="line">    @OneToMany(mappedBy = &quot;b&quot;)</span><br><span class="line">    private List&lt;C&gt; cs;</span><br><span class="line">    </span><br><span class="line">    // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>@OneToMany</code>标注的实体类属性（或者其<code>getter</code>）类型为集合类型，<code>fetch</code>那么默认为<code>LAZY</code>。</p>
+<p><code>mappedBy = &quot;b&quot;</code>表示，当前类（B）是通过C中b属性与之建立关联的。记住只要是使用了<code>mappedBy</code>，就是关系被维护方。</p>
+<h2 id="ManyToMany"><a href="#ManyToMany" class="headerlink" title="@ManyToMany"></a>@ManyToMany</h2><p>一篇博客可以有多个标签，而一个标签可以使用在多篇博客上，<code>Blog</code>类和<code>Tag</code>类是典型的多对多关系。    </p>
+<p><code>@ManyToMany</code>用以表示多对多关系，与<code>@OneToOne</code>和<code>@ManyToOne</code>一样，也可以有单向和双向关系之分。     </p>
+<p>是单向还是双向，和标注本身并没有关系，只是看实体类之间是否相互引用。<br>下面的代码定义了<code>Blog</code>到<code>Tag</code>的单向多对多关系，所有操作都设置为级联的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Entity</span><br><span class="line">public class Blog &#123;</span><br><span class="line">    @ManyToMany(cascade = CascadeType.ALL)</span><br><span class="line">    private List&lt;Tag&gt; tags = new ArrayList&lt;Tag&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Entity</span><br><span class="line">public class Tag &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果在<code>Tag</code>中定义一个<code>Blog</code>集合，则形成双向关系：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Entity</span><br><span class="line">public class Tag &#123;</span><br><span class="line">    @ManyToMany(mappedBy = “tags”)</span><br><span class="line">    private List&lt;Blog&gt; blogs = new ArrayList&lt;Blog&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>mappedBy = &quot;tag&quot;</code>表示，当前类（<code>Tag</code>）是通过<code>Blog</code>中<code>tags</code>属性与之建立关联的。<code>Blog</code>是关系维护方，<code>Tag</code>类是关系被维护方。</p>
+<h3 id="JoinTable"><a href="#JoinTable" class="headerlink" title="@JoinTable"></a>@JoinTable</h3><p>多对多关系的定义如果自动生成<code>DDL</code>，则会生成一张描述多对多关系的表，在这个例子中表明为<code>blog_tag</code>，表中的两个属性分别会命名为<code>blog_id</code>和<code>tag_id</code>。</p>
+<p>如果需要指定表名和属性名，即基于自动映射的命名规则生成的Schema相关命名，和实际命名不相同时，则需要使用<code>@JoinTable</code>标注，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Entity</span><br><span class="line">public class Blog &#123;</span><br><span class="line">    @ManyToMany(cascade = CascadeType.ALL)</span><br><span class="line">    @JoinTable(</span><br><span class="line">        name=&quot;blog_tag_relation&quot;,</span><br><span class="line">        joinColumns=@JoinColumn(name=&quot;blog_id&quot;, referencedColumnName=&quot;id&quot;),</span><br><span class="line">        inverseJoinColumns=@JoinColumn(name=&quot;tag_id&quot;, referencedColumnName=&quot;id&quot;)</span><br><span class="line">    )</span><br><span class="line">    private List&lt;Tag&gt; tags = new ArrayList&lt;Tag&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="用-ManyToOne实现多对多"><a href="#用-ManyToOne实现多对多" class="headerlink" title="用@ManyToOne实现多对多"></a>用@ManyToOne实现多对多</h3><p>在实际情况下，我们建立多对多关系的同时还需要存储一些其他信息，例如该关系的创建时间，此时，我们可以将多对多关系分解为两个多对一关系。</p>
+<p>定义一个<code>BlogTag</code>实体类来表示<code>Blog</code>与<code>Tag</code>之间的多对多关系：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Entity</span><br><span class="line">class BlogTag &#123;</span><br><span class="line">    @ManyToOne</span><br><span class="line">    private Blog blog;</span><br><span class="line"></span><br><span class="line">    @ManyToOne</span><br><span class="line">    private Tag tag;</span><br><span class="line"></span><br><span class="line">    private Date createdTime;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>让<code>BlogTag</code>这个实体类建立与<code>Blog</code>和<code>Tag</code>的多对一关系：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Entity</span><br><span class="line">public class Blog &#123;</span><br><span class="line">    @OneToMany(mappedBy = &quot;blog&quot;)</span><br><span class="line">    private final List&lt;BlogTag&gt; blogTags = new ArrayList&lt;BlogTag&gt;();</span><br><span class="line"></span><br><span class="line">    public List&lt;Tag&gt; getTags() &#123;</span><br><span class="line">        return blogTags.stream().map(BlogTag::getTag).collect(Collectors.toList());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Entity</span><br><span class="line">public class Tag &#123;</span><br><span class="line">    @OneToMany(mappedBy = &quot;tag&quot;)</span><br><span class="line">    private final List&lt;BlogTag&gt; blogTags = new ArrayList&lt;BlogTag&gt;();</span><br><span class="line"></span><br><span class="line">    public List&lt;Blog&gt; getBlogs() &#123;</span><br><span class="line">        return blogTags.stream().map(BlogTag::getBlog).collect(Collectors.toList());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/spring-data-jpa/" rel="tag">#spring-data-jpa</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/27/android annotation/" rel="next" title="Java Annotation">
+                <i class="fa fa-chevron-left"></i> Java Annotation
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="sourfeng" />
+          <p class="site-author-name" itemprop="name">sourfeng</p>
+          <p class="site-description motion-element" itemprop="description">Time goes by so fast, people go in and out of your life. You must never miss the opportunity to tell these people how much they mean to you.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/2f1d030a635d" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2682454775" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本属性"><span class="nav-number">1.</span> <span class="nav-text">基本属性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Id-and-GeneratedValue"><span class="nav-number">1.1.</span> <span class="nav-text">@Id and @GeneratedValue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Column"><span class="nav-number">1.2.</span> <span class="nav-text">@Column</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic和-Transient"><span class="nav-number">1.3.</span> <span class="nav-text">@Basic和@Transient</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Temporal"><span class="nav-number">1.4.</span> <span class="nav-text">@Temporal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lob"><span class="nav-number">1.5.</span> <span class="nav-text">@Lob</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FetchType（加载类型）"><span class="nav-number">2.</span> <span class="nav-text">FetchType（加载类型）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#FetchType-LAZY"><span class="nav-number">2.1.</span> <span class="nav-text">FetchType.LAZY</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实体类关系"><span class="nav-number">3.</span> <span class="nav-text">实体类关系</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OneToOne-一对一"><span class="nav-number">3.1.</span> <span class="nav-text">OneToOne(一对一)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JoinColumn"><span class="nav-number">3.2.</span> <span class="nav-text">@JoinColumn</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#双向-OneToOne关联"><span class="nav-number">3.2.1.</span> <span class="nav-text">双向@OneToOne关联</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OneToMany-ManyToOne"><span class="nav-number">3.3.</span> <span class="nav-text">@OneToMany,@ManyToOne</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ManyToMany"><span class="nav-number">3.4.</span> <span class="nav-text">@ManyToMany</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JoinTable"><span class="nav-number">3.4.1.</span> <span class="nav-text">@JoinTable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用-ManyToOne实现多对多"><span class="nav-number">3.4.2.</span> <span class="nav-text">用@ManyToOne实现多对多</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sourfeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>
