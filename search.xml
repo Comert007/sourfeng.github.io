@@ -291,6 +291,115 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Rx系列之RxJava操作符]]></title>
+      <url>http://sourfeng.cn/2016/07/28/Rx%E7%B3%BB%E5%88%97%E4%B9%8BRxJava%E6%93%8D%E4%BD%9C%E7%AC%A6/</url>
+      <content type="html"><![CDATA[<h1 id="Rx系列之RxJava操作符"><a href="#Rx系列之RxJava操作符" class="headerlink" title="Rx系列之RxJava操作符"></a>Rx系列之RxJava操作符</h1><p>在前面一章节中，讲解了Rxjava的基本的组成，他们之间的关系，这一章，主要让大家了解一下在RxJava中的操作符。但是在这之前，我们还得先了解一下 Scheduler(调度器) </p>
+<h3 id="Scheduler-调度器"><a href="#Scheduler-调度器" class="headerlink" title="Scheduler(调度器)"></a>Scheduler(调度器)</h3><p>在上一章节，我们讲到了，Rxjava的就是<strong>异步</strong>。<br>那么如何让他进行异步呢？这就要用到我们的调度器了。<br>先看看RxJava中调度器支持哪几种调度：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">调度器类型</th>
+<th style="text-align:center">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Schedulers.computation( )</td>
+<td style="text-align:center">用于计算任务，如事件循环或和回调处理，不要用于IO操作(IO操作请使用Schedulers.io())；默认线程数等于处理器的数量</td>
+</tr>
+<tr>
+<td style="text-align:center">Schedulers.from(executor)</td>
+<td style="text-align:center">使用指定的Executor作为调度器</td>
+</tr>
+<tr>
+<td style="text-align:center">Schedulers.immediate( )</td>
+<td style="text-align:center">在当前线程立即开始执行任务</td>
+</tr>
+<tr>
+<td style="text-align:center">Schedulers.io( )</td>
+<td style="text-align:center">用于IO密集型任务，如异步阻塞IO操作，这个调度器的线程池会根据需要增长；对于普通的计算任务，请使用Schedulers.computation()；Schedulers.io( )默认是一个CachedThreadScheduler，很像一个有线程缓存的新线程调度器</td>
+</tr>
+<tr>
+<td style="text-align:center">Schedulers.newThread( )</td>
+<td style="text-align:center">为每个任务创建一个新线程</td>
+</tr>
+<tr>
+<td style="text-align:center">Schedulers.trampoline( )</td>
+<td style="text-align:center">当其它排队的任务完成后，在当前线程排队开始执行</td>
+</tr>
+</tbody>
+</table>
+<p>有了上述所说的几种调度之后，就可以调用subscribeOn()和observeOn()来对线程进行调度了。<br><strong>subscribeOn()指定：Observable将全部的处理过程（包括发射数据和通知）放在特定的调度器上执行。</strong><br><strong>ObserveOn()指定：一个Observable在一个特定的调度器上调用观察者的onNext, onError和onCompleted方法，</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Subscriber subcriber = <span class="keyword">new</span> Subscriber&lt;String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Log.d(TAG, <span class="string">"onCompleted: Completed!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line">        Log.d(TAG, <span class="string">"onError: Error!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        Log.d(TAG, <span class="string">"onNext: "</span> + s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Observable.just(<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>)</span><br><span class="line">        .subscribeOn(Schedulers.io())</span><br><span class="line">        .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">        .subscribe(subcriber);</span><br></pre></td></tr></table></figure>
+<p><strong>上面这段代码中，由于指定了1，2，3，4发射代码为Schedulers.io()，那么发射数据就将在io线程中执行。而onNext, onError和onCompleted则将在主线中执行。</strong></p>
+<h3 id="Operators-操作符"><a href="#Operators-操作符" class="headerlink" title="Operators(操作符)"></a>Operators(操作符)</h3><h4 id="map家族"><a href="#map家族" class="headerlink" title="map家族"></a>map家族</h4><p>RxJava提供了几个mapping函数：map(),flatMap(),concatMap(),flatMapIterable()以及switchMap().所有这些函数都作用于一个可观测序列，然后变换它发射的值，最后用一种新的形式返回它们。</p>
+<h5 id="map"><a href="#map" class="headerlink" title="map"></a>map</h5><p>map 是用于变换的一个操作符，这在RxJava中占据了一定的地位，就是因为它的变换操作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Subscriber subcriber = <span class="keyword">new</span> Subscriber&lt;Integer&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Log.d(TAG, <span class="string">"onCompleted: Completed!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line">        Log.d(TAG, <span class="string">"onError: Error!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Integer integer)</span> </span>&#123;</span><br><span class="line">        Log.d(TAG, <span class="string">"onNext: "</span> + integer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Observable.just(<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>)</span><br><span class="line">        .subscribeOn(Schedulers.io())</span><br><span class="line">        .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">        .map(<span class="keyword">new</span> Func1&lt;String, Integer&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Integer <span class="title">call</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> Integer.parseInt(s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        .subscribe(subcriber);</span><br></pre></td></tr></table></figure>
+<p>在上面的代码中，我通过map将字符串转化成了整形的1，2，3，4，返回一个Observable的对象。<br><strong>请注意：这个操作符默认不在任何特定的调度器上执行。</strong>   </p>
+<h5 id="flatmap"><a href="#flatmap" class="headerlink" title="flatmap"></a>flatmap</h5><p>flatmap对于新入门的来说，理解起来确实有一定的难度，可以先看一个简单的栗子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Subscriber subcriber = <span class="keyword">new</span> Subscriber&lt;Integer&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Log.d(TAG, <span class="string">"onCompleted: Completed!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line">        Log.d(TAG, <span class="string">"onError: Error!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Integer integer)</span> </span>&#123;</span><br><span class="line">        Log.d(TAG, <span class="string">"onNext: "</span> + integer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Observable.just(<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>)</span><br><span class="line">        .subscribeOn(Schedulers.io())</span><br><span class="line">        .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">        .flatMap(<span class="keyword">new</span> Func1&lt;String, Observable&lt;Integer&gt;&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Observable&lt;Integer&gt; <span class="title">call</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> Observable.just(Integer.parseInt(s)+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        .subscribe(subcriber);</span><br></pre></td></tr></table></figure>
+<p>从上面我们可以看出，<strong>map与flatmap很相似，都是用的Func1，而且模式都是<i,o>模式，即是：I转换成O并返回。但是最大的不同点在于：我们flatmap的输出类型是Observable的类型。<br>在这里请注意一个问题：在执行flatmap中返回之后(O输出返回的Observable)，并不是立马把返回的Observable通过Subscribe进行订阅，而是将返回的若干Observables都交给同一个Observable，然后再进行subscribe。</i,o></strong></p>
+<p>所以，在上面我们先将字符串”1”,”2”, “3”, “4” 分别转换成一个整形的Observable类型，即是：Observable(2),Observable(3),Observable(4),Observable(5)。然后将这些个Observables统一转换成一个Observable，再进行subscribe。看一下结果：</p>
+<pre><code>onNext: 2
+onNext: 3
+onNext: 4
+onNext: 5
+onCompleted: Completed!
+</code></pre><p><strong>那么，这个flatmap到底有何用呢？可以用在什么地方呢？</strong>   </p>
+<p>假设这样一种情景：一个学校的老师我们定义为一个集合A，每个老师包括了个人信息和所教课程，一个老师不可能只教授一门课程，所以我们将老师所教授课程定义为集合B。如果让你打印每个老师所教课程，该怎么做？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Teacher[] teachers = ...;</span><br><span class="line">Subscriber&lt;Course&gt; subscriber = <span class="keyword">new</span> Subscriber&lt;Course&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Course course)</span> </span>&#123;</span><br><span class="line">        Log.d(tag, course.getName());</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line">Observable.from(teachers)</span><br><span class="line">    .flatMap(<span class="keyword">new</span> Func1&lt;Teacher, Observable&lt;Course&gt;&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Observable&lt;Course&gt; <span class="title">call</span><span class="params">(Teacher teacher)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> Observable.from(teacher.getCourses());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .subscribe(subscriber);</span><br></pre></td></tr></table></figure>
+<p><strong>最后再补充一点：FlatMap对这些Observables发射的数据做的是合并(merge)操作，因此它们可能是交错的。这意味着flatMap()函数在最后的Observable中不能够保证源Observables确切的发射顺序。</strong></p>
+<h5 id="ConcatMap"><a href="#ConcatMap" class="headerlink" title="ConcatMap"></a>ConcatMap</h5><p>RxJava的concatMap()函数解决了flatMap()的交叉问题，提供了一种能够把发射的值连续在一起的铺平函数，而不是合并它们，如下图所示：<br><img src="https://github.com/yuxingxin/RxJava-Essentials-CN/raw/master/images/chapter5_3.png" alt="ConcatMap示意图"><br>变换的操作符还有很多：buffer,Scan…等等，大家可以研究一下。</p>
+<h4 id="其他操作符"><a href="#其他操作符" class="headerlink" title="其他操作符"></a>其他操作符</h4><h4 id="repeat"><a href="#repeat" class="headerlink" title="repeat"></a>repeat</h4><p><strong>让你发射的数据重复发射</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Subscriber subcriber = <span class="keyword">new</span> Subscriber&lt;Integer&gt;() &#123;</span><br><span class="line">    ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Observable.just(<span class="string">"1"</span>, <span class="string">"2"</span>,<span class="string">"3"</span>)</span><br><span class="line">        .subscribeOn(Schedulers.io())</span><br><span class="line">        .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">        .flatMap(<span class="keyword">new</span> Func1&lt;String, Observable&lt;Integer&gt;&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Observable&lt;Integer&gt; <span class="title">call</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> Observable.just(Integer.parseInt(s)+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        .repeat(<span class="number">3</span>)</span><br><span class="line">        .subscribe(subcriber);</span><br></pre></td></tr></table></figure>
+<p>看一下结果：</p>
+<pre><code>onNext: 2
+onNext: 3
+onNext: 4
+onNext: 2
+onNext: 3
+onNext: 4
+onNext: 2
+onNext: 3
+onNext: 4
+onCompleted: Completed!
+</code></pre><h5 id="range"><a href="#range" class="headerlink" title="range"></a>range</h5><p><strong>从起始点开始发射数据</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Subscriber subcriber = <span class="keyword">new</span> Subscriber&lt;Integer&gt;() &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Observable.range(<span class="number">10</span>,<span class="number">3</span>)</span><br><span class="line">        .subscribeOn(Schedulers.io())</span><br><span class="line">        .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">        .subscribe(subcriber);</span><br></pre></td></tr></table></figure>
+<p>结果为：10，11，12。range(10,3),其中10 是起始，3是数量。</p>
+<h5 id="interval"><a href="#interval" class="headerlink" title="interval"></a>interval</h5><p><strong>在需要轮询的时候是最好的选择</strong></p>
+<pre><code>Observable.interval(3,TimeUnit.SECONDS)
+        .subscribe(new Observer&lt;Long&gt;() {
+            @Override
+            public void onCompleted() {
+            ...
+        });
+</code></pre><p>interval()函数的两个参数：一个指定两次发射的时间间隔，另一个是用到的时间单位。</p>
+<h5 id="take"><a href="#take" class="headerlink" title="take"></a>take</h5><pre><code>Observable.just(1, 2, 3, 4, 5, 6, 7, 8)
+          .take(4)
+          .subscribe(new Subscriber&lt;Integer&gt;() {
+        ...
+    });
+</code></pre><p>输出</p>
+<pre><code>Next: 1
+Next: 2
+Next: 3
+Next: 4
+Sequence complete.
+</code></pre><h5 id="TakeLast"><a href="#TakeLast" class="headerlink" title="TakeLast"></a>TakeLast</h5><p><strong>如果我们想要最后N个元素，我们只需使用takeLast()函数：</strong></p>
+<pre><code>Observable.just(1, 2, 3, 4, 5, 6, 7, 8)
+              .takelast(2)
+              .subscribe(new Subscriber&lt;Integer&gt;() {
+            ...
+        });
+</code></pre><p>输出</p>
+<pre><code>Next: 7
+Next: 8
+Sequence complete.
+</code></pre><p><a href="https://mcxiaoke.gitbooks.io/rxdocs/content/Operators.html" target="_blank" rel="external">戳我</a>可以查看更多的操作符的用法。</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Rx系列之RxJava初识]]></title>
       <url>http://sourfeng.cn/2016/07/28/Rx%E5%AE%B6%E6%97%8F%E4%B9%8BRxJava%E5%88%9D%E8%AF%86/</url>
       <content type="html"><![CDATA[<h1 id="Rx系列之RxJava初识"><a href="#Rx系列之RxJava初识" class="headerlink" title="Rx系列之RxJava初识"></a>Rx系列之RxJava初识</h1><h3 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h3><p>第一次听说Rxjava的时候，我顿时就懵b了,什么事RxJava？新的一门强大的语言么！顿时怀着对RxJava的期待，慢慢的去了解了。后来才发现，RxJava其实用到了响应式开发的一种新的开发模式。响应式开发，哇，感觉不得鸟啊！所以在不断的挖掘下，对RxJava做了一个稍微的整理。</p>
@@ -420,115 +529,6 @@ onNext: three
 <p><img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/S.PublishSubject.png" alt="PublishSubject示意图"></p>
 <p>最后在总结一下<strong>Subject</strong>几种类型的区别：</p>
 <p><strong>ReplaySubject：不论订阅所处任何位置，都将发射全部数据</strong><br><strong>AsyncSubject：不论订阅所处任何位置，只会发射最后一个数据</strong><br><strong>BehaviorSubject：订阅之前的一个和订阅之后的全部数据被发射</strong><br><strong>PublishSubject：订阅之后的数据全部被发射。</strong>   </p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Rx系列之RxJava操作符]]></title>
-      <url>http://sourfeng.cn/2016/07/28/Rx%E7%B3%BB%E5%88%97%E4%B9%8BRxJava%E6%93%8D%E4%BD%9C%E7%AC%A6/</url>
-      <content type="html"><![CDATA[<h1 id="Rx系列之RxJava操作符"><a href="#Rx系列之RxJava操作符" class="headerlink" title="Rx系列之RxJava操作符"></a>Rx系列之RxJava操作符</h1><p>在前面一章节中，讲解了Rxjava的基本的组成，他们之间的关系，这一章，主要让大家了解一下在RxJava中的操作符。但是在这之前，我们还得先了解一下 Scheduler(调度器) </p>
-<h3 id="Scheduler-调度器"><a href="#Scheduler-调度器" class="headerlink" title="Scheduler(调度器)"></a>Scheduler(调度器)</h3><p>在上一章节，我们讲到了，Rxjava的就是<strong>异步</strong>。<br>那么如何让他进行异步呢？这就要用到我们的调度器了。<br>先看看RxJava中调度器支持哪几种调度：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">调度器类型</th>
-<th style="text-align:center">效果</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Schedulers.computation( )</td>
-<td style="text-align:center">用于计算任务，如事件循环或和回调处理，不要用于IO操作(IO操作请使用Schedulers.io())；默认线程数等于处理器的数量</td>
-</tr>
-<tr>
-<td style="text-align:center">Schedulers.from(executor)</td>
-<td style="text-align:center">使用指定的Executor作为调度器</td>
-</tr>
-<tr>
-<td style="text-align:center">Schedulers.immediate( )</td>
-<td style="text-align:center">在当前线程立即开始执行任务</td>
-</tr>
-<tr>
-<td style="text-align:center">Schedulers.io( )</td>
-<td style="text-align:center">用于IO密集型任务，如异步阻塞IO操作，这个调度器的线程池会根据需要增长；对于普通的计算任务，请使用Schedulers.computation()；Schedulers.io( )默认是一个CachedThreadScheduler，很像一个有线程缓存的新线程调度器</td>
-</tr>
-<tr>
-<td style="text-align:center">Schedulers.newThread( )</td>
-<td style="text-align:center">为每个任务创建一个新线程</td>
-</tr>
-<tr>
-<td style="text-align:center">Schedulers.trampoline( )</td>
-<td style="text-align:center">当其它排队的任务完成后，在当前线程排队开始执行</td>
-</tr>
-</tbody>
-</table>
-<p>有了上述所说的几种调度之后，就可以调用subscribeOn()和observeOn()来对线程进行调度了。<br><strong>subscribeOn()指定：Observable将全部的处理过程（包括发射数据和通知）放在特定的调度器上执行。</strong><br><strong>ObserveOn()指定：一个Observable在一个特定的调度器上调用观察者的onNext, onError和onCompleted方法，</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Subscriber subcriber = <span class="keyword">new</span> Subscriber&lt;String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Log.d(TAG, <span class="string">"onCompleted: Completed!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line">        Log.d(TAG, <span class="string">"onError: Error!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        Log.d(TAG, <span class="string">"onNext: "</span> + s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Observable.just(<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>)</span><br><span class="line">        .subscribeOn(Schedulers.io())</span><br><span class="line">        .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">        .subscribe(subcriber);</span><br></pre></td></tr></table></figure>
-<p><strong>上面这段代码中，由于指定了1，2，3，4发射代码为Schedulers.io()，那么发射数据就将在io线程中执行。而onNext, onError和onCompleted则将在主线中执行。</strong></p>
-<h3 id="Operators-操作符"><a href="#Operators-操作符" class="headerlink" title="Operators(操作符)"></a>Operators(操作符)</h3><h4 id="map家族"><a href="#map家族" class="headerlink" title="map家族"></a>map家族</h4><p>RxJava提供了几个mapping函数：map(),flatMap(),concatMap(),flatMapIterable()以及switchMap().所有这些函数都作用于一个可观测序列，然后变换它发射的值，最后用一种新的形式返回它们。</p>
-<h5 id="map"><a href="#map" class="headerlink" title="map"></a>map</h5><p>map 是用于变换的一个操作符，这在RxJava中占据了一定的地位，就是因为它的变换操作。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Subscriber subcriber = <span class="keyword">new</span> Subscriber&lt;Integer&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Log.d(TAG, <span class="string">"onCompleted: Completed!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line">        Log.d(TAG, <span class="string">"onError: Error!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Integer integer)</span> </span>&#123;</span><br><span class="line">        Log.d(TAG, <span class="string">"onNext: "</span> + integer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Observable.just(<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>)</span><br><span class="line">        .subscribeOn(Schedulers.io())</span><br><span class="line">        .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">        .map(<span class="keyword">new</span> Func1&lt;String, Integer&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Integer <span class="title">call</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> Integer.parseInt(s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        .subscribe(subcriber);</span><br></pre></td></tr></table></figure>
-<p>在上面的代码中，我通过map将字符串转化成了整形的1，2，3，4，返回一个Observable的对象。<br><strong>请注意：这个操作符默认不在任何特定的调度器上执行。</strong>   </p>
-<h5 id="flatmap"><a href="#flatmap" class="headerlink" title="flatmap"></a>flatmap</h5><p>flatmap对于新入门的来说，理解起来确实有一定的难度，可以先看一个简单的栗子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Subscriber subcriber = <span class="keyword">new</span> Subscriber&lt;Integer&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Log.d(TAG, <span class="string">"onCompleted: Completed!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line">        Log.d(TAG, <span class="string">"onError: Error!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Integer integer)</span> </span>&#123;</span><br><span class="line">        Log.d(TAG, <span class="string">"onNext: "</span> + integer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Observable.just(<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>)</span><br><span class="line">        .subscribeOn(Schedulers.io())</span><br><span class="line">        .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">        .flatMap(<span class="keyword">new</span> Func1&lt;String, Observable&lt;Integer&gt;&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Observable&lt;Integer&gt; <span class="title">call</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> Observable.just(Integer.parseInt(s)+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        .subscribe(subcriber);</span><br></pre></td></tr></table></figure>
-<p>从上面我们可以看出，<strong>map与flatmap很相似，都是用的Func1，而且模式都是<i,o>模式，即是：I转换成O并返回。但是最大的不同点在于：我们flatmap的输出类型是Observable的类型。<br>在这里请注意一个问题：在执行flatmap中返回之后(O输出返回的Observable)，并不是立马把返回的Observable通过Subscribe进行订阅，而是将返回的若干Observables都交给同一个Observable，然后再进行subscribe。</i,o></strong></p>
-<p>所以，在上面我们先将字符串”1”,”2”, “3”, “4” 分别转换成一个整形的Observable类型，即是：Observable(2),Observable(3),Observable(4),Observable(5)。然后将这些个Observables统一转换成一个Observable，再进行subscribe。看一下结果：</p>
-<pre><code>onNext: 2
-onNext: 3
-onNext: 4
-onNext: 5
-onCompleted: Completed!
-</code></pre><p><strong>那么，这个flatmap到底有何用呢？可以用在什么地方呢？</strong>   </p>
-<p>假设这样一种情景：一个学校的老师我们定义为一个集合A，每个老师包括了个人信息和所教课程，一个老师不可能只教授一门课程，所以我们将老师所教授课程定义为集合B。如果让你打印每个老师所教课程，该怎么做？</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Teacher[] teachers = ...;</span><br><span class="line">Subscriber&lt;Course&gt; subscriber = <span class="keyword">new</span> Subscriber&lt;Course&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Course course)</span> </span>&#123;</span><br><span class="line">        Log.d(tag, course.getName());</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line">Observable.from(teachers)</span><br><span class="line">    .flatMap(<span class="keyword">new</span> Func1&lt;Teacher, Observable&lt;Course&gt;&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Observable&lt;Course&gt; <span class="title">call</span><span class="params">(Teacher teacher)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> Observable.from(teacher.getCourses());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .subscribe(subscriber);</span><br></pre></td></tr></table></figure>
-<p><strong>最后再补充一点：FlatMap对这些Observables发射的数据做的是合并(merge)操作，因此它们可能是交错的。这意味着flatMap()函数在最后的Observable中不能够保证源Observables确切的发射顺序。</strong></p>
-<h5 id="ConcatMap"><a href="#ConcatMap" class="headerlink" title="ConcatMap"></a>ConcatMap</h5><p>RxJava的concatMap()函数解决了flatMap()的交叉问题，提供了一种能够把发射的值连续在一起的铺平函数，而不是合并它们，如下图所示：<br><img src="https://github.com/yuxingxin/RxJava-Essentials-CN/raw/master/images/chapter5_3.png" alt="ConcatMap示意图"><br>变换的操作符还有很多：buffer,Scan…等等，大家可以研究一下。</p>
-<h4 id="其他操作符"><a href="#其他操作符" class="headerlink" title="其他操作符"></a>其他操作符</h4><h4 id="repeat"><a href="#repeat" class="headerlink" title="repeat"></a>repeat</h4><p><strong>让你发射的数据重复发射</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Subscriber subcriber = <span class="keyword">new</span> Subscriber&lt;Integer&gt;() &#123;</span><br><span class="line">    ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Observable.just(<span class="string">"1"</span>, <span class="string">"2"</span>,<span class="string">"3"</span>)</span><br><span class="line">        .subscribeOn(Schedulers.io())</span><br><span class="line">        .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">        .flatMap(<span class="keyword">new</span> Func1&lt;String, Observable&lt;Integer&gt;&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Observable&lt;Integer&gt; <span class="title">call</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> Observable.just(Integer.parseInt(s)+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        .repeat(<span class="number">3</span>)</span><br><span class="line">        .subscribe(subcriber);</span><br></pre></td></tr></table></figure>
-<p>看一下结果：</p>
-<pre><code>onNext: 2
-onNext: 3
-onNext: 4
-onNext: 2
-onNext: 3
-onNext: 4
-onNext: 2
-onNext: 3
-onNext: 4
-onCompleted: Completed!
-</code></pre><h5 id="range"><a href="#range" class="headerlink" title="range"></a>range</h5><p><strong>从起始点开始发射数据</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Subscriber subcriber = <span class="keyword">new</span> Subscriber&lt;Integer&gt;() &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Observable.range(<span class="number">10</span>,<span class="number">3</span>)</span><br><span class="line">        .subscribeOn(Schedulers.io())</span><br><span class="line">        .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">        .subscribe(subcriber);</span><br></pre></td></tr></table></figure>
-<p>结果为：10，11，12。range(10,3),其中10 是起始，3是数量。</p>
-<h5 id="interval"><a href="#interval" class="headerlink" title="interval"></a>interval</h5><p><strong>在需要轮询的时候是最好的选择</strong></p>
-<pre><code>Observable.interval(3,TimeUnit.SECONDS)
-        .subscribe(new Observer&lt;Long&gt;() {
-            @Override
-            public void onCompleted() {
-            ...
-        });
-</code></pre><p>interval()函数的两个参数：一个指定两次发射的时间间隔，另一个是用到的时间单位。</p>
-<h5 id="take"><a href="#take" class="headerlink" title="take"></a>take</h5><pre><code>Observable.just(1, 2, 3, 4, 5, 6, 7, 8)
-          .take(4)
-          .subscribe(new Subscriber&lt;Integer&gt;() {
-        ...
-    });
-</code></pre><p>输出</p>
-<pre><code>Next: 1
-Next: 2
-Next: 3
-Next: 4
-Sequence complete.
-</code></pre><h5 id="TakeLast"><a href="#TakeLast" class="headerlink" title="TakeLast"></a>TakeLast</h5><p><strong>如果我们想要最后N个元素，我们只需使用takeLast()函数：</strong></p>
-<pre><code>Observable.just(1, 2, 3, 4, 5, 6, 7, 8)
-              .takelast(2)
-              .subscribe(new Subscriber&lt;Integer&gt;() {
-            ...
-        });
-</code></pre><p>输出</p>
-<pre><code>Next: 7
-Next: 8
-Sequence complete.
-</code></pre><p><a href="https://mcxiaoke.gitbooks.io/rxdocs/content/Operators.html" target="_blank" rel="external">戳我</a>可以查看更多的操作符的用法。</p>
 ]]></content>
     </entry>
     
